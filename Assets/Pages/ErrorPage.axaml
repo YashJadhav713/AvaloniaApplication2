@@ -1,0 +1,365 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaloniaApplication2.Assets.Pages.ErrorPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME                                                         -->
+    <!--   BLACK      #0A0A0A (page)   #121212 (panels)                -->
+    <!--   RED/ALERT  #FF4D4D  (warning border / alert accent)         -->
+    <!--   DARK GREEN #00A844  (highlights, brand, contact, button)    -->
+    <!--   WHITE      text only                                        -->
+    <!-- ============================================================= -->
+
+    <UserControl.Styles>
+
+        <!-- RETURN BUTTON -->
+        <Style Selector="Button.returnButton">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#00FF66"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="LetterSpacing" Value="3"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="RenderTransform" Value="scale(1)"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.08" Easing="CubicEaseOut"/>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.returnButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00BD4C"/>
+            <Setter Property="BorderBrush" Value="#00FF88"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.returnButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.95)"/>
+        </Style>
+        <Style Selector="Button.returnButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#008A37"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <!-- ============================================================= -->
+    <!-- PORTRAIT DESIGN AREA (1080 x 1920)                             -->
+    <!-- ============================================================= -->
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas Width="1080"
+                Height="1920"
+                Background="#0A0A0A">
+
+            <!-- BACKGROUND IMAGE -->
+            <Image Source="/Assets/Image/CompletedPageBackground.png"
+                   Width="1080"
+                   Height="1920"
+                   Stretch="Fill"
+                   Opacity="0.4"/>
+
+            <Rectangle Width="1080"
+                       Height="1920"
+                       Fill="#E6050505"/>
+
+            <!-- ================================================= -->
+            <!-- HEADER                                            -->
+            <!-- ================================================= -->
+
+            <TextBlock FontFamily="Cascadia Mono"
+                       FontSize="54"
+                       FontWeight="Black"
+                       LetterSpacing="3"
+                       Canvas.Left="60"
+                       Canvas.Top="65">
+                <Run Text="NUTRI" Foreground="White"/><Run Text="POD" Foreground="#00A844"/>
+            </TextBlock>
+
+            <TextBlock Text="SYSTEM ALERT  •  PREPARATION ISSUE"
+                       FontFamily="Cascadia Mono"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#FF4D4D"
+                       Canvas.Left="64"
+                       Canvas.Top="138"/>
+
+            <Border Width="960"
+                    Height="3"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="60"
+                    Canvas.Top="190"/>
+
+            <!-- ================================================= -->
+            <!-- ALERT STATUS PANEL                                -->
+            <!-- ================================================= -->
+
+            <Border Width="860"
+                    Height="90"
+                    Background="#B31A0505"
+                    BorderBrush="#FF4D4D"
+                    BorderThickness="2"
+                    CornerRadius="16"
+                    Canvas.Left="110"
+                    Canvas.Top="240"
+                    BoxShadow="0 0 25 0 #44FF4D4D">
+
+                <Grid ColumnDefinitions="Auto,*,Auto" VerticalAlignment="Center" Margin="28,0">
+                    <Border Grid.Column="0"
+                            Width="6"
+                            Height="54"
+                            Background="#FF4D4D"
+                            CornerRadius="3"/>
+
+                    <TextBlock Grid.Column="1"
+                               Text="DRINK PREPARATION FAILED"
+                               FontFamily="Cascadia Mono"
+                               FontSize="26"
+                               FontWeight="Black"
+                               LetterSpacing="4"
+                               Foreground="#FF4D4D"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+
+                    <Border Grid.Column="2"
+                            Width="6"
+                            Height="54"
+                            Background="#FF4D4D"
+                            CornerRadius="3"/>
+                </Grid>
+
+            </Border>
+
+            <!-- ================================================= -->
+            <!-- APOLOGY & ERROR DETAILS CARD                      -->
+            <!-- ================================================= -->
+
+            <Border Width="860"
+                    Height="660"
+                    Background="#CC121212"
+                    BorderBrush="#333333"
+                    BorderThickness="2"
+                    CornerRadius="22"
+                    Canvas.Left="110"
+                    Canvas.Top="370"
+                    BoxShadow="0 0 40 0 #33000000">
+
+                <StackPanel VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Spacing="24"
+                            Margin="40,20">
+
+                    <!-- WARNING ICON -->
+                    <Border Width="110"
+                            Height="110"
+                            CornerRadius="55"
+                            Background="#22FF4D4D"
+                            BorderBrush="#FF4D4D"
+                            BorderThickness="3"
+                            HorizontalAlignment="Center"
+                            BoxShadow="0 0 30 0 #33FF4D4D">
+                        <TextBlock Text="!"
+                                   FontFamily="Cascadia Mono"
+                                   FontSize="64"
+                                   FontWeight="Black"
+                                   Foreground="#FF4D4D"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- APOLOGY TITLE -->
+                    <TextBlock Text="WE SINCERELY APOLOGIZE"
+                               FontFamily="Cascadia Mono"
+                               FontSize="36"
+                               FontWeight="Black"
+                               LetterSpacing="3"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"/>
+
+                    <!-- DECORATIVE ACCENT LINE -->
+                    <Border Width="80"
+                            Height="4"
+                            Background="#FF4D4D"
+                            CornerRadius="2"
+                            HorizontalAlignment="Center"/>
+
+                    <!-- APOLOGY MESSAGE -->
+                    <TextBlock Text="We were unable to complete your drink due to an unexpected machine interruption during the preparation process."
+                               FontFamily="Cascadia Mono"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               Foreground="#CCCCCC"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               MaxWidth="740"/>
+
+                    <!-- DETAILED ERROR REASON BOX -->
+                    <Border Background="#1A1A1A"
+                            BorderBrush="#44FF4D4D"
+                            BorderThickness="1.5"
+                            CornerRadius="12"
+                            Padding="24,16"
+                            HorizontalAlignment="Center">
+                        <StackPanel Spacing="6" HorizontalAlignment="Center">
+                            <TextBlock Text="SYSTEM DIAGNOSTIC:"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       LetterSpacing="2"
+                                       Foreground="#888888"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="ErrorMessageText"
+                                       Text="Cup could not be positioned in dispenser."
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Foreground="#FFA8A8"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"
+                                       MaxWidth="700"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- REFUND NOTE -->
+                    <TextBlock Text="Any deducted payment will be refunded immediately. Please contact our support team below."
+                               FontFamily="Cascadia Mono"
+                               FontSize="16"
+                               FontWeight="Normal"
+                               Foreground="#00A844"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"/>
+
+                </StackPanel>
+
+            </Border>
+
+            <!-- ================================================= -->
+            <!-- SERVICE PROVIDER CONTACT CARD                     -->
+            <!-- ================================================= -->
+
+            <Border Width="860"
+                    Height="380"
+                    Background="#D908180E"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="22"
+                    Canvas.Left="110"
+                    Canvas.Top="1070"
+                    BoxShadow="0 0 45 0 #3300A844">
+
+                <StackPanel VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Spacing="18"
+                            Margin="40,20">
+
+                    <!-- CARD TAG -->
+                    <Border Background="#1A00A844"
+                            CornerRadius="8"
+                            Padding="16,6"
+                            HorizontalAlignment="Center">
+                        <TextBlock Text="SERVICE PROVIDER CONTACT"
+                                   FontFamily="Cascadia Mono"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   LetterSpacing="3"
+                                   Foreground="#00FF66"/>
+                    </Border>
+
+                    <!-- CALL TO ACTION -->
+                    <TextBlock Text="FOR IMMEDIATE ASSISTANCE OR REFUND:"
+                               FontFamily="Cascadia Mono"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Foreground="#DDDDDD"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"/>
+
+                    <!-- PHONE NUMBER BADGE -->
+                    <Border Background="#121212"
+                            BorderBrush="#00A844"
+                            BorderThickness="2"
+                            CornerRadius="16"
+                            Padding="32,18"
+                            HorizontalAlignment="Center"
+                            BoxShadow="0 0 25 0 #2200A844">
+                        <StackPanel Orientation="Horizontal" Spacing="16" VerticalAlignment="Center">
+                            <TextBlock Text="📞"
+                                       FontSize="36"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock x:Name="ContactNumberText"
+                                       Text="+91 00000-00000"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="38"
+                                       FontWeight="Black"
+                                       LetterSpacing="2"
+                                       Foreground="#00FF66"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- AVAILABILITY -->
+                    <TextBlock Text="TOLL-FREE HELPLINE  •  WHATSAPP SUPPORT  •  24/7 ACTIVE"
+                               FontFamily="Cascadia Mono"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               LetterSpacing="2"
+                               Foreground="#888888"
+                               HorizontalAlignment="Center"/>
+
+                    <!-- MACHINE & ORDER ID IDENTIFICATION -->
+                    <TextBlock x:Name="MachineDetailsText"
+                               Text="MACHINE ID: NUTRIPOD-01   |   ORDER ID: -"
+                               FontFamily="Cascadia Mono"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               LetterSpacing="1"
+                               Foreground="#00A844"
+                               HorizontalAlignment="Center"/>
+
+                </StackPanel>
+
+            </Border>
+
+            <!-- ================================================= -->
+            <!-- RETURN HOME BUTTON                                -->
+            <!-- ================================================= -->
+
+            <Button x:Name="ReturnButton"
+                    Classes="returnButton"
+                    Width="860"
+                    Height="90"
+                    Content="RETURN TO HOME (15S)"
+                    Canvas.Left="110"
+                    Canvas.Top="1490"
+                    Click="ReturnButton_Click"/>
+
+            <!-- FOOTER -->
+            <TextBlock Text="SHAKE LAB    |    AUTOMATED DRINK SYSTEM"
+                       FontFamily="Cascadia Mono"
+                       FontSize="13"
+                       FontWeight="Bold"
+                       LetterSpacing="2"
+                       Foreground="#555555"
+                       Canvas.Left="110"
+                       Canvas.Top="1630"/>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>

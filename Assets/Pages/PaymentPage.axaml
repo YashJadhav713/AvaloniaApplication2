@@ -1,0 +1,559 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="AvaloniaApplication2.Assets.Pages.PaymentPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME (same as AddOnsPage)                                    -->
+    <!-- BLACK      #0A0A0A                                            -->
+    <!-- DARK GREEN #00A844                                            -->
+    <!-- ACCENT     #008A37                                            -->
+    <!-- WHITE  (text only)                                            -->
+    <!-- ============================================================= -->
+
+    <UserControl.Styles>
+        <Style Selector="Button.cancelOrderButton">
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+        <Style Selector="Button.cancelOrderButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+        <Style Selector="Button.cancelOrderButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+    </UserControl.Styles>
+
+    <!-- ============================================================= -->
+    <!-- PORTRAIT DESIGN AREA (1080 x 1920)                             -->
+    <!-- ============================================================= -->
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas
+            Width="1080"
+            Height="1920"
+            Background="#0A0A0A">
+
+            <!-- ====================================================== -->
+            <!-- PAYMENT VIEW                                           -->
+            <!-- ====================================================== -->
+
+            <Canvas
+                x:Name="PaymentView"
+                Width="1080"
+                Height="1920"
+                Background="#0A0A0A">
+
+                <!-- BACKGROUND -->
+
+                <Image
+                    Source="/Assets/Image/CompletedPageBackground.png"
+                    Width="1080"
+                    Height="1920"
+                    Stretch="Fill"
+                    Opacity="0.15"/>
+
+
+                <!-- ============================================== -->
+                <!-- HIDDEN ORDER INFORMATION                       -->
+                <!-- ============================================== -->
+
+                <StackPanel
+                    x:Name="OrderInformation"
+                    IsVisible="False">
+
+                    <TextBlock x:Name="OrderDrinkName"/>
+                    <TextBlock x:Name="OrderBase"/>
+                    <TextBlock x:Name="OrderIdText"/>
+                    <TextBlock x:Name="HiddenTotalDueText"/>
+
+                </StackPanel>
+
+
+                <!-- ============================================== -->
+                <!-- TITLE                                          -->
+                <!-- ============================================== -->
+
+                <TextBlock FontFamily="Cascadia Mono"
+                           FontSize="48"
+                           FontWeight="Black"
+                           LetterSpacing="3"
+                           Canvas.Left="50"
+                           Canvas.Top="80">
+                    <Run Text="NUTRI" Foreground="White"/><Run Text="POD" Foreground="#00A844"/>
+                </TextBlock>
+
+                <TextBlock
+                    Text="SCAN &amp; PAY TO ORDER"
+                    FontFamily="Cascadia Mono"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    LetterSpacing="3"
+                    Foreground="#99FFFFFF"
+                    Canvas.Left="54"
+                    Canvas.Top="150"/>
+
+                <Border
+                    Width="980"
+                    Height="3"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="50"
+                    Canvas.Top="195"/>
+
+
+                <!-- ============================================== -->
+                <!-- AMOUNT CARD                                    -->
+                <!-- ============================================== -->
+
+                <Border
+                    Width="980"
+                    Height="140"
+                    Background="#E60A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="20"
+                    Canvas.Left="50"
+                    Canvas.Top="240">
+
+                    <Grid
+                        ColumnDefinitions="*,Auto"
+                        Margin="35,18">
+
+                        <Grid RowDefinitions="Auto,*">
+                            <TextBlock
+                                Text="AMOUNT TO PAY"
+                                FontFamily="Cascadia Mono"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                LetterSpacing="2"
+                                Foreground="#008A37"/>
+
+                            <TextBlock
+                                x:Name="TotalDueText"
+                                Grid.Row="1"
+                                Text="INR 0"
+                                FontFamily="Cascadia Mono"
+                                FontSize="44"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1" RowDefinitions="Auto,*">
+                            <TextBlock
+                                Text="ORDER ID"
+                                FontFamily="Cascadia Mono"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                LetterSpacing="2"
+                                Foreground="#008A37"
+                                TextAlignment="Right"/>
+
+                            <TextBlock
+                                x:Name="OrderIdDisplay"
+                                Grid.Row="1"
+                                Text=""
+                                FontFamily="Cascadia Mono"
+                                FontSize="38"
+                                FontWeight="Black"
+                                Foreground="#00FF66"
+                                VerticalAlignment="Center"
+                                TextAlignment="Right"/>
+                        </Grid>
+
+                    </Grid>
+
+                </Border>
+
+
+                <!-- ============================================== -->
+                <!-- QR CARD                                        -->
+                <!-- ============================================== -->
+
+                <Border
+                    x:Name="QrCard"
+                    Width="980"
+                    Height="760"
+                    Background="#E60A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="22"
+                    Canvas.Left="50"
+                    Canvas.Top="410">
+
+                    <Canvas
+                        Width="980"
+                        Height="760">
+
+                        <!-- QR CONTAINER -->
+
+                        <Border
+                            x:Name="QrContainer"
+                            Width="540"
+                            Height="540"
+                            Background="#FFFFFF"
+                            BorderBrush="#008A37"
+                            BorderThickness="3"
+                            CornerRadius="16"
+                            Canvas.Left="220"
+                            Canvas.Top="45">
+
+                            <Grid>
+
+                                <!-- QR PLACEHOLDER -->
+
+                                <TextBlock
+                                    x:Name="QrPlaceholder"
+                                    Text="CREATING QR"
+                                    FontFamily="Cascadia Mono"
+                                    FontSize="26"
+                                    FontWeight="Bold"
+                                    LetterSpacing="2"
+                                    Foreground="#0A0A0A"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    TextAlignment="Center"/>
+
+
+                                <!-- QR IMAGE -->
+
+                                <Image
+                                    x:Name="QrImage"
+                                    Width="480"
+                                    Height="480"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Stretch="Fill"
+                                    IsVisible="False"/>
+
+                            </Grid>
+
+                        </Border>
+
+
+                        <!-- SCAN TEXT -->
+
+                        <TextBlock
+                            Text="SCAN QR TO PAY WITH ANY UPI APP"
+                            FontFamily="Cascadia Mono"
+                            FontSize="22"
+                            FontWeight="Bold"
+                            LetterSpacing="2"
+                            Foreground="White"
+                            Width="980"
+                            TextAlignment="Center"
+                            Canvas.Left="0"
+                            Canvas.Top="640"/>
+
+                        <!-- PAYMENT RECEIVED CIRCLE -->
+
+                        <Border
+                            x:Name="PaymentReceivedCircle"
+                            Width="160"
+                            Height="160"
+                            CornerRadius="80"
+                            Background="#00A844"
+                            Canvas.Left="410"
+                            Canvas.Top="235"
+                            IsVisible="False">
+
+                            <TextBlock
+                                Text="OK"
+                                FontFamily="Cascadia Mono"
+                                FontSize="46"
+                                FontWeight="Bold"
+                                Foreground="#0A0A0A"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <!-- PAYMENT FAILED CIRCLE -->
+
+                        <Border
+                            x:Name="PaymentFailedCircle"
+                            Width="160"
+                            Height="160"
+                            CornerRadius="80"
+                            Background="#FF3B30"
+                            Canvas.Left="410"
+                            Canvas.Top="235"
+                            IsVisible="False">
+
+                            <TextBlock
+                                Text="X"
+                                FontFamily="Cascadia Mono"
+                                FontSize="52"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                    </Canvas>
+
+                </Border>
+
+
+                <!-- WAITING PANEL -->
+
+                <Border
+                    x:Name="WaitingPanel"
+                    Width="980"
+                    Height="60"
+                    Background="Transparent"
+                    Canvas.Left="50"
+                    Canvas.Top="1200">
+
+                    <TextBlock
+                        Text="WAITING FOR PAYMENT"
+                        FontFamily="Cascadia Mono"
+                        FontSize="22"
+                        FontWeight="Bold"
+                        LetterSpacing="2"
+                        Foreground="#008A37"
+                        Width="980"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"/>
+
+                </Border>
+
+
+                <!-- PAYMENT COUNTDOWN -->
+
+                <Border
+                    x:Name="CountdownCard"
+                    Width="980"
+                    Height="90"
+                    Background="#E60A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="16"
+                    Canvas.Left="50"
+                    Canvas.Top="1275">
+
+                    <TextBlock
+                        x:Name="PaymentCountdownText"
+                        Text="PAYMENT TIME LEFT 180 SEC"
+                        FontFamily="Cascadia Mono"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        LetterSpacing="1"
+                        Foreground="White"
+                        Width="980"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"/>
+
+                </Border>
+
+
+                <!-- DARK GREEN ACCENT -->
+
+                <Border
+                    x:Name="OrangeAccent"
+                    Width="980"
+                    Height="5"
+                    Background="#00A844"
+                    CornerRadius="3"
+                    Canvas.Left="50"
+                    Canvas.Top="1390"/>
+
+
+                <!-- PAYMENT RECEIVED PANEL -->
+
+                <Border
+                    x:Name="ReceivedPanel"
+                    Width="980"
+                    Height="240"
+                    Background="#E60A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="20"
+                    Canvas.Left="50"
+                    Canvas.Top="1420"
+                    IsVisible="False">
+
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="15">
+
+                        <TextBlock
+                            Text="PAYMENT RECEIVED"
+                            FontFamily="Cascadia Mono"
+                            FontSize="32"
+                            FontWeight="Bold"
+                            LetterSpacing="2"
+                            Foreground="#00A844"
+                            HorizontalAlignment="Center"/>
+
+                        <TextBlock
+                            x:Name="TransactionIdText"
+                            Text=""
+                            FontFamily="Cascadia Mono"
+                            FontSize="18"
+                            Foreground="#008A37"
+                            HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- PAYMENT FAILED PANEL -->
+
+                <Border
+                    x:Name="FailedPanel"
+                    Width="980"
+                    Height="260"
+                    Background="#E60A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="20"
+                    Canvas.Left="50"
+                    Canvas.Top="1420"
+                    IsVisible="False">
+
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="20">
+
+                        <TextBlock
+                            Text="PAYMENT FAILED"
+                            FontFamily="Cascadia Mono"
+                            FontSize="32"
+                            FontWeight="Bold"
+                            LetterSpacing="2"
+                            Foreground="White"
+                            HorizontalAlignment="Center"/>
+
+                        <TextBlock
+                            x:Name="FailedMessageText"
+                            Text=""
+                            FontFamily="Cascadia Mono"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Foreground="#008A37"
+                            TextWrapping="Wrap"
+                            Width="860"
+                            TextAlignment="Center"
+                            HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- CANCEL ORDER BUTTON -->
+                <Button
+                    x:Name="CancelOrderButton"
+                    Classes="cancelOrderButton"
+                    Width="360"
+                    Height="80"
+                    Background="#121212"
+                    BorderBrush="#008A37"
+                    BorderThickness="2"
+                    CornerRadius="16"
+                    Canvas.Left="360"
+                    Canvas.Top="1720"
+                    Click="CancelOrderButton_Click">
+                    <TextBlock
+                        Text="CANCEL ORDER"
+                        FontFamily="Cascadia Mono"
+                        FontSize="22"
+                        FontWeight="Bold"
+                        LetterSpacing="2"
+                        Foreground="#00A844"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                </Button>
+
+            </Canvas>
+
+
+            <!-- ================================================== -->
+            <!-- FREE MODE                                          -->
+            <!-- ================================================== -->
+
+            <Canvas
+                x:Name="FreeModeView"
+                Width="1080"
+                Height="1920"
+                Background="#0A0A0A"
+                IsVisible="False">
+
+                <!-- BACKGROUND -->
+
+                <Image
+                    Source="/Assets/Image/CompletedPageBackground.png"
+                    Width="1080"
+                    Height="1920"
+                    Stretch="Fill"
+                    Opacity="0.15"/>
+
+                <Border
+                    Width="980"
+                    Height="320"
+                    Background="#E60A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="22"
+                    Canvas.Left="50"
+                    Canvas.Top="700">
+
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="18">
+
+                        <TextBlock
+                            Text="FREE MODE"
+                            FontFamily="Cascadia Mono"
+                            FontSize="42"
+                            FontWeight="Bold"
+                            LetterSpacing="3"
+                            Foreground="#00A844"
+                            HorizontalAlignment="Center"/>
+
+                        <TextBlock
+                            x:Name="FreeModeOrderIdText"
+                            Text=""
+                            FontFamily="Cascadia Mono"
+                            FontSize="26"
+                            FontWeight="Black"
+                            LetterSpacing="3"
+                            Foreground="#00FF66"
+                            HorizontalAlignment="Center"/>
+
+                        <TextBlock
+                            Text="PREPARING YOUR DRINK"
+                            FontFamily="Cascadia Mono"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <Border
+                    x:Name="FreeModeAccent"
+                    Width="980"
+                    Height="5"
+                    Background="#00A844"
+                    CornerRadius="3"
+                    Canvas.Left="50"
+                    Canvas.Top="1050"/>
+
+            </Canvas>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>

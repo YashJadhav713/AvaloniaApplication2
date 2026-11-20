@@ -1,0 +1,405 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaloniaApplication2.Assets.Pages.HomePage">
+
+    <UserControl.Styles>
+
+        <!-- PASSWORD BOX: dark field, dark green border on hover / focus -->
+        <Style Selector="TextBox#AdminPasswordBox /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#161616"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+        </Style>
+        <Style Selector="TextBox#AdminPasswordBox:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#161616"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+        <Style Selector="TextBox#AdminPasswordBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#161616"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+        <Style Selector="TextBox#AdminPasswordBox.error /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="#FF4D4D"/>
+        </Style>
+        <Style Selector="TextBox#AdminPasswordBox /template/ TextBlock#PART_Watermark">
+            <Setter Property="Foreground" Value="#777777"/>
+        </Style>
+
+        <!-- KEYPAD BUTTON -->
+        <Style Selector="Button.keypadButton">
+            <Setter Property="Height" Value="102"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="42"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="RenderTransform" Value="scale(1)"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.08" Easing="CubicEaseOut"/>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#0A3818"/>
+            <Setter Property="BorderBrush" Value="#00C853"/>
+            <Setter Property="Foreground" Value="#00FF66"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.92)"/>
+        </Style>
+        <Style Selector="Button.keypadButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="BorderBrush" Value="#00FF66"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton.keypadAction">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Background" Value="#222222"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+        </Style>
+
+        <!-- UNLOCK BUTTON (dark green) -->
+        <Style Selector="Button.unlock /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style Selector="Button.unlock:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00BD4C"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style Selector="Button.unlock:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#008A37"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!-- CANCEL BUTTON (dark with outline) -->
+        <Style Selector="Button.cancel /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#1A1A1A"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#4A4A4A"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style Selector="Button.cancel:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#262626"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+        <Style Selector="Button.cancel:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#0F0F0F"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <Viewbox Stretch="Fill">
+        <Grid Width="1080" Height="1920" Background="#0A0A0A">
+
+            <!-- HOME BACKGROUND -->
+            <Image Source="/Assets/Image/HomePage.png"
+                   Stretch="Fill"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+            <!-- HIDDEN ADMIN TAP AREA -->
+            <Button x:Name="AdminTapButton"
+                    Width="160"
+                    Height="160"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Padding="0"
+                    Click="AdminTapButton_Click"/>
+
+            <!-- ORDER NOW BUTTON -->
+            <Button x:Name="OrderNowButton"
+                    Width="624"
+                    Height="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,0,130"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Padding="0">
+
+                <Image x:Name="OrderNowImage"
+                       Source="/Assets/Image/OrderNowButton.png"
+                       Stretch="Uniform"/>
+
+            </Button>
+
+            <!-- ADMIN PASSWORD OVERLAY -->
+            <Border x:Name="AdminPasswordOverlay"
+                    IsVisible="False"
+                    Background="#E6000000">
+
+                <Border Width="800"
+                        Padding="40,32,40,36"
+                        Background="#0A0A0A"
+                        BorderBrush="#00A844"
+                        BorderThickness="2"
+                        CornerRadius="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BoxShadow="0 0 45 0 #5500A844">
+
+                    <StackPanel Spacing="16">
+
+                        <!-- BRAND -->
+                        <TextBlock Text="NUTRIPOD"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   LetterSpacing="4"
+                                   Foreground="#00A844"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+                        <!-- TITLE -->
+                        <TextBlock Text="ADMIN PASSWORD"
+                                   FontSize="28"
+                                   FontWeight="Black"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+                        <!-- DARK GREEN ACCENT BAR -->
+                        <Border Width="54"
+                                Height="4"
+                                CornerRadius="2"
+                                Background="#00A844"
+                                HorizontalAlignment="Center"/>
+
+                        <!-- SUBTITLE -->
+                        <TextBlock Text="Tap keypad or type 4-digit password"
+                                   FontSize="14"
+                                   Foreground="#9A9A9A"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+                        <!-- PASSWORD INPUT -->
+                        <TextBox x:Name="AdminPasswordBox"
+                                 MaxLength="4"
+                                 PasswordChar="●"
+                                 Height="66"
+                                 FontSize="30"
+                                 FontWeight="Bold"
+                                 Foreground="White"
+                                 CaretBrush="#00A844"
+                                 SelectionBrush="#6600A844"
+                                 Background="#161616"
+                                 BorderBrush="#005C25"
+                                 BorderThickness="1.5"
+                                 CornerRadius="10"
+                                 Padding="10"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 PlaceholderText="Enter 4-digit password"/>
+
+                        <!-- ON-SCREEN NUMERIC KEYPAD -->
+                        <Grid>
+                            <!-- NUTRIPOD LOGO BACKGROUND (50% OPACITY) -->
+                            <Image Source="/Assets/Image/NutripodLogo.png"
+                                   Opacity="0.5"
+                                   Width="380"
+                                   Height="260"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"/>
+
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                                  ColumnDefinitions="*,*,*"
+                                  RowSpacing="14"
+                                  ColumnSpacing="14"
+                                  Margin="0,6,0,6">
+                                <Button Grid.Row="0" Grid.Column="0" Content="1" Classes="keypadButton" Click="KeypadDigit_Click" Tag="1"/>
+                                <Button Grid.Row="0" Grid.Column="1" Content="2" Classes="keypadButton" Click="KeypadDigit_Click" Tag="2"/>
+                                <Button Grid.Row="0" Grid.Column="2" Content="3" Classes="keypadButton" Click="KeypadDigit_Click" Tag="3"/>
+
+                                <Button Grid.Row="1" Grid.Column="0" Content="4" Classes="keypadButton" Click="KeypadDigit_Click" Tag="4"/>
+                                <Button Grid.Row="1" Grid.Column="1" Content="5" Classes="keypadButton" Click="KeypadDigit_Click" Tag="5"/>
+                                <Button Grid.Row="1" Grid.Column="2" Content="6" Classes="keypadButton" Click="KeypadDigit_Click" Tag="6"/>
+
+                                <Button Grid.Row="2" Grid.Column="0" Content="7" Classes="keypadButton" Click="KeypadDigit_Click" Tag="7"/>
+                                <Button Grid.Row="2" Grid.Column="1" Content="8" Classes="keypadButton" Click="KeypadDigit_Click" Tag="8"/>
+                                <Button Grid.Row="2" Grid.Column="2" Content="9" Classes="keypadButton" Click="KeypadDigit_Click" Tag="9"/>
+
+                                <Button Grid.Row="3" Grid.Column="0" Content="CLR" Classes="keypadButton keypadAction" Click="KeypadClear_Click"/>
+                                <Button Grid.Row="3" Grid.Column="1" Content="0" Classes="keypadButton" Click="KeypadDigit_Click" Tag="0"/>
+                                <Button Grid.Row="3" Grid.Column="2" Content="⌫" Classes="keypadButton keypadAction" Click="KeypadBackspace_Click"/>
+                            </Grid>
+                        </Grid>
+
+                        <!-- ERROR MESSAGE -->
+                        <TextBlock x:Name="AdminPasswordError"
+                                   Text=""
+                                   Foreground="#FF4D4D"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+                        <!-- BUTTONS -->
+                        <Grid ColumnDefinitions="*,*"
+                              ColumnSpacing="14">
+
+                            <!-- UNLOCK -->
+                            <Button Grid.Column="0"
+                                    Classes="unlock"
+                                    Content="UNLOCK"
+                                    Height="58"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    HorizontalAlignment="Stretch"
+                                    FontSize="18"
+                                    FontWeight="Black"
+                                    Background="#00A844"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    CornerRadius="10"
+                                    Padding="10"
+                                    Click="UnlockAdminButton_Click"/>
+
+                            <!-- CANCEL -->
+                            <Button Grid.Column="1"
+                                    Classes="cancel"
+                                    Content="CANCEL"
+                                    Height="58"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    HorizontalAlignment="Stretch"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Background="#1A1A1A"
+                                    Foreground="White"
+                                    BorderBrush="#4A4A4A"
+                                    BorderThickness="1"
+                                    CornerRadius="10"
+                                    Padding="10"
+                                    Click="CancelAdminPasswordButton_Click"/>
+
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Border>
+
+            <!-- ========================================================= -->
+            <!-- DOOR OPEN POPUP OVERLAY (ERROR DIALOG)                     -->
+            <!-- ========================================================= -->
+            <Border x:Name="DoorOpenOverlay"
+                    IsVisible="False"
+                    Background="#E6000000"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+
+                <Border Width="820"
+                        Padding="48,46,48,46"
+                        Background="#0F0F0F"
+                        BorderBrush="#FF4D4D"
+                        BorderThickness="2.5"
+                        CornerRadius="22"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BoxShadow="0 0 50 0 #55FF4D4D">
+
+                    <StackPanel Spacing="22" HorizontalAlignment="Center">
+
+                        <!-- BRAND -->
+                        <TextBlock Text="NUTRIPOD"
+                                   FontFamily="Cascadia Mono"
+                                   FontSize="15"
+                                   FontWeight="Bold"
+                                   LetterSpacing="4"
+                                   Foreground="#00A844"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+                        <!-- WARNING ICON -->
+                        <Border Width="100"
+                                Height="100"
+                                CornerRadius="50"
+                                Background="#22FF4D4D"
+                                BorderBrush="#FF4D4D"
+                                BorderThickness="3"
+                                HorizontalAlignment="Center"
+                                BoxShadow="0 0 30 0 #33FF4D4D">
+                            <TextBlock Text="!"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="58"
+                                       FontWeight="Black"
+                                       Foreground="#FF4D4D"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- TITLE -->
+                        <TextBlock Text="Door Open"
+                                   FontFamily="Cascadia Mono"
+                                   FontSize="36"
+                                   FontWeight="Black"
+                                   LetterSpacing="3"
+                                   Foreground="#FF4D4D"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+                        <!-- DECORATIVE ACCENT LINE -->
+                        <Border Width="70"
+                                Height="4"
+                                CornerRadius="2"
+                                Background="#FF4D4D"
+                                HorizontalAlignment="Center"/>
+
+                        <!-- MESSAGE -->
+                        <TextBlock Text="Please close the machine door to continue."
+                                   FontFamily="Cascadia Mono"
+                                   FontSize="22"
+                                   FontWeight="SemiBold"
+                                   Foreground="#E0E0E0"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   MaxWidth="700"
+                                   Margin="0,6,0,6"/>
+
+                        <!-- STATUS BADGE -->
+                        <Border Background="#1A1111"
+                                BorderBrush="#44FF4D4D"
+                                BorderThickness="1.5"
+                                CornerRadius="12"
+                                Padding="20,12"
+                                HorizontalAlignment="Center"
+                                Margin="0,4,0,0">
+                            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                                <Border Width="10"
+                                        Height="10"
+                                        CornerRadius="5"
+                                        Background="#FF4D4D"
+                                        VerticalAlignment="Center"/>
+                                <TextBlock Text="MONITORING SENSOR STATUS..."
+                                           FontFamily="Cascadia Mono"
+                                           FontSize="13"
+                                           FontWeight="Bold"
+                                           LetterSpacing="2"
+                                           Foreground="#FF8080"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+                </Border>
+            </Border>
+        </Grid>
+    </Viewbox>
+</UserControl>

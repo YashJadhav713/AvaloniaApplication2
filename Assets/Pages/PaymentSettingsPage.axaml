@@ -1,0 +1,499 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="AvaloniaApplication2.Assets.Pages.PaymentSettingsPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME                                                         -->
+    <!--   BLACK      #0A0A0A (page)   #121212 (panels)                -->
+    <!--   DARK GREEN #00A844 (highlights)                             -->
+    <!--   BORDER     #005C25 (outlines)                               -->
+    <!--   WHITE      text (labels use white at 60% = #99FFFFFF)       -->
+    <!-- ============================================================= -->
+
+    <UserControl.Styles>
+
+        <!-- ========================================================= -->
+        <!-- ON / OFF TOGGLE BUTTON                                    -->
+        <!-- Colours are set from the code-behind (ON / OFF state).    -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.toggleButton">
+
+            <Setter Property="Template">
+
+                <ControlTemplate>
+
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            Foreground="{TemplateBinding Foreground}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"/>
+
+                    </Border>
+
+                </ControlTemplate>
+
+            </Setter>
+
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+
+        </Style>
+
+        <Style Selector="Button.toggleButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.96)"/>
+        </Style>
+
+
+        <!-- ========================================================= -->
+        <!-- SAVE BUTTON (dark green)                                  -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.saveButton">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00BD4C"/>
+            <Setter Property="BorderBrush" Value="#00BD4C"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#008A37"/>
+            <Setter Property="BorderBrush" Value="#008A37"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+        </Style>
+
+
+        <!-- ========================================================= -->
+        <!-- CANCEL BUTTON (dark with outline)                         -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.cancelButton">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.cancelButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.cancelButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+        <Style Selector="Button.cancelButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#04180B"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <!-- KEYPAD BUTTON -->
+        <Style Selector="Button.keypadButton">
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="34"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+            <Setter Property="RenderTransform" Value="scale(1)"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.08" Easing="CubicEaseOut"/>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.keypadNumber">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="FontWeight" Value="Black"/>
+        </Style>
+
+        <Style Selector="Button.keypadLetter">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#0A3818"/>
+            <Setter Property="BorderBrush" Value="#00C853"/>
+            <Setter Property="Foreground" Value="#00FF66"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.92)"/>
+        </Style>
+        <Style Selector="Button.keypadButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="BorderBrush" Value="#00FF66"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton.keypadAction">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Background" Value="#222222"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+        </Style>
+
+
+        <!-- ========================================================= -->
+        <!-- MID TEXT BOX (dark, green border on hover / focus)        -->
+        <!-- ========================================================= -->
+
+        <Style Selector="TextBox#MidTextBox /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+        </Style>
+
+        <Style Selector="TextBox#MidTextBox:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="TextBox#MidTextBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas
+            Width="1080"
+            Height="1920"
+            Background="#0A0A0A">
+
+            <!-- ================================================= -->
+            <!-- TITLE                                             -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                Text="PAYMENT SETTINGS"
+                FontFamily="Cascadia Mono"
+                FontSize="36"
+                FontWeight="Black"
+                LetterSpacing="4"
+                Foreground="White"
+                TextAlignment="Center"
+                Width="1080"
+                Canvas.Left="0"
+                Canvas.Top="200"/>
+
+            <Border
+                Width="920"
+                Height="3"
+                Background="#00A844"
+                CornerRadius="2"
+                Canvas.Left="80"
+                Canvas.Top="270"/>
+
+            <!-- ================================================= -->
+            <!-- PAYMENT ON / OFF                                  -->
+            <!-- ================================================= -->
+
+            <Border
+                Width="920"
+                Height="110"
+                Background="#121212"
+                BorderBrush="#005C25"
+                BorderThickness="2"
+                CornerRadius="18"
+                Canvas.Left="80"
+                Canvas.Top="340">
+
+                <Grid
+                    ColumnDefinitions="*,200">
+
+                    <TextBlock
+                        Text="PAYMENT GATEWAY"
+                        FontFamily="Cascadia Mono"
+                        FontSize="22"
+                        FontWeight="Bold"
+                        LetterSpacing="2"
+                        Foreground="White"
+                        VerticalAlignment="Center"
+                        Margin="35,0,0,0"/>
+
+                    <Button
+                        x:Name="PaymentToggleButton"
+                        Classes="toggleButton"
+                        Grid.Column="1"
+                        Width="150"
+                        Height="55"
+                        Content="OFF"
+                        FontFamily="Cascadia Mono"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Background="#0A0A0A"
+                        Foreground="White"
+                        BorderBrush="#005C25"
+                        BorderThickness="2"
+                        CornerRadius="12"
+                        Margin="0,0,25,0"/>
+
+                </Grid>
+
+            </Border>
+
+            <!-- ================================================= -->
+            <!-- PHONEPE MID                                       -->
+            <!-- ================================================= -->
+
+            <Border
+                Width="920"
+                Height="140"
+                Background="#121212"
+                BorderBrush="#005C25"
+                BorderThickness="2"
+                CornerRadius="18"
+                Canvas.Left="80"
+                Canvas.Top="490">
+
+                <Grid
+                    RowDefinitions="Auto,*"
+                    Margin="35,18">
+
+                    <TextBlock
+                        Text="PHONEPE MID"
+                        FontFamily="Cascadia Mono"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        LetterSpacing="2"
+                        Foreground="#99FFFFFF"/>
+
+                    <TextBox
+                        x:Name="MidTextBox"
+                        Grid.Row="1"
+                        Height="55"
+                        FontFamily="Cascadia Mono"
+                        FontSize="18"
+                        Foreground="White"
+                        CaretBrush="#00A844"
+                        SelectionBrush="#6600A844"
+                        Background="#181818"
+                        BorderBrush="#005C25"
+                        BorderThickness="2"
+                        CornerRadius="10"
+                        Padding="15"
+                        VerticalContentAlignment="Center"
+                        PlaceholderText="Enter PhonePe MID"
+                        PlaceholderForeground="#66FFFFFF"/>
+
+                </Grid>
+
+            </Border>
+
+            <!-- ================================================= -->
+            <!-- STATUS                                            -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                x:Name="StatusText"
+                Text=""
+                FontFamily="Cascadia Mono"
+                FontSize="16"
+                FontWeight="Bold"
+                Foreground="#99FFFFFF"
+                TextAlignment="Center"
+                Width="920"
+                Canvas.Left="80"
+                Canvas.Top="675"/>
+
+            <!-- ================================================= -->
+            <!-- SAVE                                               -->
+            <!-- ================================================= -->
+
+            <Button
+                x:Name="SaveButton"
+                Classes="saveButton"
+                Content="SAVE"
+                Canvas.Left="80"
+                Canvas.Top="740"
+                Width="445"
+                Height="85"
+                FontFamily="Cascadia Mono"
+                FontSize="22"
+                FontWeight="Black"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                BorderThickness="2"
+                CornerRadius="15"/>
+
+            <!-- ================================================= -->
+            <!-- CANCEL                                             -->
+            <!-- ================================================= -->
+
+            <Button
+                x:Name="CancelButton"
+                Classes="cancelButton"
+                Content="CANCEL"
+                Canvas.Left="555"
+                Canvas.Top="740"
+                Width="445"
+                Height="85"
+                FontFamily="Cascadia Mono"
+                FontSize="22"
+                FontWeight="Bold"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                BorderThickness="2"
+                CornerRadius="15"/>
+
+            <!-- ================================================= -->
+            <!-- DARK GREEN ACCENT                                  -->
+            <!-- ================================================= -->
+
+            <Border
+                Width="920"
+                Height="5"
+                Background="#00A844"
+                CornerRadius="3"
+                Canvas.Left="80"
+                Canvas.Top="870"/>
+
+            <!-- ========================================================= -->
+            <!-- ON-SCREEN TOUCH KEYPAD (WITH NUTRIPOD LOGO BACKGROUND)     -->
+            <!-- ========================================================= -->
+            <Border x:Name="KeypadBorder"
+                    Width="1020"
+                    Height="580"
+                    Background="#101010"
+                    BorderBrush="#005C25"
+                    BorderThickness="2"
+                    CornerRadius="18"
+                    Padding="14,14"
+                    Canvas.Left="30"
+                    Canvas.Top="900">
+
+                <Grid>
+                    <!-- NUTRIPOD LOGO BACKGROUND (50% OPACITY) -->
+                    <Image Source="/Assets/Image/NutripodLogo.png"
+                           Opacity="0.5"
+                           Width="420"
+                           Height="300"
+                           Stretch="Uniform"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False"/>
+
+                    <StackPanel Orientation="Vertical" Spacing="10">
+
+                        <!-- TOP BAR / ACTIONS -->
+                        <Grid ColumnDefinitions="*,Auto" VerticalAlignment="Center">
+                            <TextBlock Text="EDITING: PHONEPE MID"
+                                       Grid.Column="0"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="18"
+                                       FontWeight="Black"
+                                       Foreground="#00A844"
+                                       VerticalAlignment="Center"/>
+
+                            <Button Grid.Column="1"
+                                    Classes="keypadButton keypadAction"
+                                    Width="120"
+                                    Height="44"
+                                    Content="CLR"
+                                    Click="KeypadClear_Click"/>
+                        </Grid>
+
+                        <!-- ROW 1: NUMBERS (1 - 0) -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="1" Tag="1" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="2" Tag="2" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="3" Tag="3" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="4" Tag="4" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="5" Tag="5" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="6" Tag="6" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="7" Tag="7" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="8" Tag="8" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="9" Tag="9" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadNumber" Width="89" Height="88" Content="0" Tag="0" Click="KeypadChar_Click"/>
+                        </StackPanel>
+
+                        <!-- ROW 2: LETTERS (Q - P) -->
+                        <StackPanel x:Name="RowLetters1" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="Q" Tag="Q" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="W" Tag="W" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="E" Tag="E" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="R" Tag="R" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="T" Tag="T" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="Y" Tag="Y" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="U" Tag="U" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="I" Tag="I" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="O" Tag="O" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="89" Height="78" Content="P" Tag="P" Click="KeypadChar_Click"/>
+                        </StackPanel>
+
+                        <!-- ROW 3: LETTERS (A - L) -->
+                        <StackPanel x:Name="RowLetters2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+                            <Button Classes="keypadButton keypadLetter" Width="98" Height="78" Content="A" Tag="A" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="98" Height="78" Content="S" Tag="S" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="98" Height="78" Content="D" Tag="D" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="98" Height="78" Content="F" Tag="F" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="98" Height="78" Content="G" Tag="G" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="98" Height="78" Content="H" Tag="H" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="98" Height="78" Content="J" Tag="J" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="98" Height="78" Content="K" Tag="K" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="98" Height="78" Content="L" Tag="L" Click="KeypadChar_Click"/>
+                        </StackPanel>
+
+                        <!-- ROW 4: CAPS, Z-M, ., BACKSPACE -->
+                        <StackPanel x:Name="RowLetters3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+                            <Button x:Name="CapsButton" Classes="keypadButton keypadAction" Width="110" Height="78" Content="CAPS" Click="KeypadCaps_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="82" Height="78" Content="Z" Tag="Z" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="82" Height="78" Content="X" Tag="X" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="82" Height="78" Content="C" Tag="C" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="82" Height="78" Content="V" Tag="V" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="82" Height="78" Content="B" Tag="B" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="82" Height="78" Content="N" Tag="N" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadLetter" Width="82" Height="78" Content="M" Tag="M" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton" Width="74" Height="78" Content="." Tag="." Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton keypadAction" Width="120" Height="78" Content="⌫" Click="KeypadBackspace_Click"/>
+                        </StackPanel>
+
+                        <!-- ROW 5: DASH, UNDERSCORE, SPACE -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+                            <Button Classes="keypadButton" Width="100" Height="78" Content="-" Tag="-" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton" Width="100" Height="78" Content="_" Tag="_" Click="KeypadChar_Click"/>
+                            <Button Classes="keypadButton" Width="720" Height="78" Content="SPACE" Click="KeypadSpace_Click"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>

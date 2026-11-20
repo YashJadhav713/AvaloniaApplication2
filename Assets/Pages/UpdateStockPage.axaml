@@ -1,0 +1,435 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="1080"
+    d:DesignHeight="1920"
+    x:Class="AvaloniaApplication2.Assets.Pages.UpdateStockPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME                                                         -->
+    <!--   BLACK      #0A0A0A (page)   #121212 (rows)                   -->
+    <!--   DARK GREEN #00A844 (highlights)                             -->
+    <!--   BORDER     #005C25 (outlines)                               -->
+    <!--   WHITE      text (labels use white at 60% = #99FFFFFF)        -->
+    <!-- ============================================================= -->
+
+    <UserControl.Styles>
+
+        <!-- TABLE ROW -->
+        <Style Selector="Border.row">
+            <Setter Property="Width" Value="920"/>
+            <Setter Property="Height" Value="58"/>
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+        </Style>
+
+        <!-- ROW LABEL -->
+        <Style Selector="TextBlock.rowLabel">
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+
+        <!-- STOCK INPUT (dark, green border on hover / focus) -->
+        <Style Selector="TextBox.stockBox">
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+            <Setter Property="CaretBrush" Value="#00A844"/>
+            <Setter Property="SelectionBrush" Value="#6600A844"/>
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+
+        <Style Selector="TextBox.stockBox /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+        </Style>
+
+        <Style Selector="TextBox.stockBox:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="TextBox.stockBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+
+        <!-- SAVE BUTTON (dark green) -->
+        <Style Selector="Button.saveButton">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00BD4C"/>
+            <Setter Property="BorderBrush" Value="#00BD4C"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#008A37"/>
+            <Setter Property="BorderBrush" Value="#008A37"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#005C25"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="Foreground" Value="#99FFFFFF"/>
+        </Style>
+
+        <!-- BACK BUTTON (dark with outline) -->
+        <Style Selector="Button.backButton">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.backButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.backButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.98)"/>
+        </Style>
+
+        <Style Selector="Button.backButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#04180B"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <!-- KEYPAD BUTTON -->
+        <Style Selector="Button.keypadButton">
+            <Setter Property="Height" Value="96"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="42"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+            <Setter Property="RenderTransform" Value="scale(1)"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.08" Easing="CubicEaseOut"/>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#0A3818"/>
+            <Setter Property="BorderBrush" Value="#00C853"/>
+            <Setter Property="Foreground" Value="#00FF66"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.92)"/>
+        </Style>
+        <Style Selector="Button.keypadButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="BorderBrush" Value="#00FF66"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton.keypadAction">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Background" Value="#222222"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+        </Style>
+
+        <Style Selector="Button.keypadNav">
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
+
+        <Style Selector="Button.keypadNav:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <Viewbox Stretch="Fill">
+        <Canvas Width="1080" Height="1920" Background="#0A0A0A">
+
+            <!-- PAGE TITLE -->
+            <TextBlock Text="AVAILABLE STOCK"
+                       FontFamily="Cascadia Mono"
+                       FontSize="36"
+                       FontWeight="Black"
+                       Foreground="White"
+                       TextAlignment="Center"
+                       Width="1080"
+                       Canvas.Left="0"
+                       Canvas.Top="60"/>
+
+            <TextBlock Text="UPDATE QUANTITY BY ITEM"
+                       FontFamily="Cascadia Mono"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="#99FFFFFF"
+                       TextAlignment="Center"
+                       Width="1080"
+                       Canvas.Left="0"
+                       Canvas.Top="110"/>
+
+            <!-- TABLE HEADER -->
+            <Border Width="920" Height="50"
+                    Background="#00A844"
+                    CornerRadius="12"
+                    Canvas.Left="80" Canvas.Top="165"/>
+
+            <TextBlock Text="ITEM"
+                       FontFamily="Cascadia Mono"
+                       FontSize="18"
+                       FontWeight="Black"
+                       Foreground="#0A0A0A"
+                       TextAlignment="Center"
+                       Width="300"
+                       Canvas.Left="110" Canvas.Top="178"/>
+
+            <TextBlock Text="AVAILABLE QUANTITY"
+                       FontFamily="Cascadia Mono"
+                       FontSize="16"
+                       FontWeight="Black"
+                       Foreground="#0A0A0A"
+                       TextAlignment="Center"
+                       Width="260"
+                       Canvas.Left="720" Canvas.Top="179"/>
+
+            <!-- MILK STOCK -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="225"/>
+            <TextBlock Classes="rowLabel" Text="MILK STOCK" Canvas.Left="110" Canvas.Top="237"/>
+            <TextBox x:Name="MilkStockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="231"/>
+
+            <!-- DRINK 1 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="293"/>
+            <TextBlock x:Name="Drink1Label" Classes="rowLabel" Text="DRINK 1 (ID: 1)" Canvas.Left="110" Canvas.Top="305"/>
+            <TextBox x:Name="Drink1StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="299"/>
+
+            <!-- DRINK 2 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="361"/>
+            <TextBlock x:Name="Drink2Label" Classes="rowLabel" Text="DRINK 2 (ID: 2)" Canvas.Left="110" Canvas.Top="373"/>
+            <TextBox x:Name="Drink2StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="367"/>
+
+            <!-- DRINK 3 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="429"/>
+            <TextBlock x:Name="Drink3Label" Classes="rowLabel" Text="DRINK 3 (ID: 3)" Canvas.Left="110" Canvas.Top="441"/>
+            <TextBox x:Name="Drink3StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="435"/>
+
+            <!-- DRINK 4 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="497"/>
+            <TextBlock x:Name="Drink4Label" Classes="rowLabel" Text="DRINK 4 (ID: 4)" Canvas.Left="110" Canvas.Top="509"/>
+            <TextBox x:Name="Drink4StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="503"/>
+
+            <!-- DRINK 5 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="565"/>
+            <TextBlock x:Name="Drink5Label" Classes="rowLabel" Text="DRINK 5 (ID: 5)" Canvas.Left="110" Canvas.Top="577"/>
+            <TextBox x:Name="Drink5StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="571"/>
+
+            <!-- DRINK 6 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="633"/>
+            <TextBlock x:Name="Drink6Label" Classes="rowLabel" Text="DRINK 6 (ID: 6)" Canvas.Left="110" Canvas.Top="645"/>
+            <TextBox x:Name="Drink6StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="639"/>
+
+            <!-- DRINK 7 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="701"/>
+            <TextBlock x:Name="Drink7Label" Classes="rowLabel" Text="DRINK 7 (ID: 7)" Canvas.Left="110" Canvas.Top="713"/>
+            <TextBox x:Name="Drink7StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="707"/>
+
+            <!-- DRINK 8 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="769"/>
+            <TextBlock x:Name="Drink8Label" Classes="rowLabel" Text="DRINK 8 (ID: 8)" Canvas.Left="110" Canvas.Top="781"/>
+            <TextBox x:Name="Drink8StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="775"/>
+
+            <!-- PROTEIN BAR 1 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="837"/>
+            <TextBlock x:Name="Bar1Label" Classes="rowLabel" Text="PROTEIN BAR 1 (ID: 9)" Canvas.Left="110" Canvas.Top="849"/>
+            <TextBox x:Name="Bar1StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="843"/>
+
+            <!-- PROTEIN BAR 2 -->
+            <Border Classes="row" Canvas.Left="80" Canvas.Top="905"/>
+            <TextBlock x:Name="Bar2Label" Classes="rowLabel" Text="PROTEIN BAR 2 (ID: 10)" Canvas.Left="110" Canvas.Top="917"/>
+            <TextBox x:Name="Bar2StockBox" Classes="stockBox" Canvas.Left="790" Canvas.Top="911"/>
+
+            <!-- STATUS -->
+            <TextBlock x:Name="StatusText"
+                       Text=""
+                       FontFamily="Cascadia Mono"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="#00A844"
+                       TextAlignment="Center"
+                       Width="920"
+                       Canvas.Left="80"
+                       Canvas.Top="985"/>
+
+            <!-- SAVE BUTTON -->
+            <Button x:Name="SaveStockButton"
+                    Classes="saveButton"
+                    Content="SAVE STOCK"
+                    Width="445" Height="85"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22" FontWeight="Black"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="2"
+                    CornerRadius="15"
+                    Canvas.Left="80" Canvas.Top="1040"/>
+
+            <!-- BACK BUTTON -->
+            <Button x:Name="BackButton"
+                    Classes="backButton"
+                    Content="BACK"
+                    Width="445" Height="85"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22" FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="2"
+                    CornerRadius="15"
+                    Canvas.Left="555" Canvas.Top="1040"/>
+
+            <!-- BOTTOM ACCENT -->
+            <Border Width="920"
+                    Height="5"
+                    Background="#00A844"
+                    CornerRadius="3"
+                    Canvas.Left="80"
+                    Canvas.Top="1155"/>
+
+            <!-- ON-SCREEN NUMERIC KEYPAD (WITH NUTRIPOD LOGO BACKGROUND) -->
+            <Border x:Name="KeypadBorder"
+                    Width="880"
+                    Height="480"
+                    Background="#121212"
+                    BorderBrush="#005C25"
+                    BorderThickness="2"
+                    CornerRadius="18"
+                    Padding="20,16"
+                    Canvas.Left="100"
+                    Canvas.Top="1185">
+
+                <Grid>
+                    <!-- NUTRIPOD LOGO BACKGROUND (50% OPACITY) -->
+                    <Image Source="/Assets/Image/NutripodLogo.png"
+                           Opacity="0.5"
+                           Width="420"
+                           Height="290"
+                           Stretch="Uniform"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False"/>
+
+                    <StackPanel Orientation="Vertical" Spacing="10">
+
+                        <!-- ACTIVE FIELD INDICATOR & NAVIGATION -->
+                        <Grid ColumnDefinitions="*,Auto,Auto,Auto" VerticalAlignment="Center">
+                            <TextBlock x:Name="ActiveStockLabel"
+                                       Grid.Column="0"
+                                       Text="EDITING: MILK STOCK"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="20"
+                                       FontWeight="Black"
+                                       Foreground="#00A844"
+                                       VerticalAlignment="Center"/>
+
+                            <Button Grid.Column="1"
+                                    Classes="keypadNav"
+                                    Width="85"
+                                    Height="46"
+                                    Margin="0,0,8,0"
+                                    Content="◀"
+                                    Click="PrevStock_Click"/>
+
+                            <Button Grid.Column="2"
+                                    Classes="keypadNav"
+                                    Width="85"
+                                    Height="46"
+                                    Margin="0,0,8,0"
+                                    Content="▶"
+                                    Click="NextStock_Click"/>
+
+                            <Button Grid.Column="3"
+                                    Classes="keypadButton keypadAction"
+                                    Width="100"
+                                    Height="46"
+                                    Content="CLR"
+                                    Click="KeypadClear_Click"/>
+                        </Grid>
+
+                        <!-- NUMERIC KEYPAD -->
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                              ColumnDefinitions="*,*,*"
+                              RowSpacing="10"
+                              ColumnSpacing="12">
+                            <Button Grid.Row="0" Grid.Column="0" Content="1" Classes="keypadButton" Click="KeypadDigit_Click" Tag="1"/>
+                            <Button Grid.Row="0" Grid.Column="1" Content="2" Classes="keypadButton" Click="KeypadDigit_Click" Tag="2"/>
+                            <Button Grid.Row="0" Grid.Column="2" Content="3" Classes="keypadButton" Click="KeypadDigit_Click" Tag="3"/>
+
+                            <Button Grid.Row="1" Grid.Column="0" Content="4" Classes="keypadButton" Click="KeypadDigit_Click" Tag="4"/>
+                            <Button Grid.Row="1" Grid.Column="1" Content="5" Classes="keypadButton" Click="KeypadDigit_Click" Tag="5"/>
+                            <Button Grid.Row="1" Grid.Column="2" Content="6" Classes="keypadButton" Click="KeypadDigit_Click" Tag="6"/>
+
+                            <Button Grid.Row="2" Grid.Column="0" Content="7" Classes="keypadButton" Click="KeypadDigit_Click" Tag="7"/>
+                            <Button Grid.Row="2" Grid.Column="1" Content="8" Classes="keypadButton" Click="KeypadDigit_Click" Tag="8"/>
+                            <Button Grid.Row="2" Grid.Column="2" Content="9" Classes="keypadButton" Click="KeypadDigit_Click" Tag="9"/>
+
+                            <Button Grid.Row="3" Grid.Column="0" Content="+10" Classes="keypadButton keypadAction" Click="KeypadAddTen_Click"/>
+                            <Button Grid.Row="3" Grid.Column="1" Content="0" Classes="keypadButton" Click="KeypadDigit_Click" Tag="0"/>
+                            <Button Grid.Row="3" Grid.Column="2" Content="⌫" Classes="keypadButton keypadAction" Click="KeypadBackspace_Click"/>
+                        </Grid>
+
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+        </Canvas>
+    </Viewbox>
+</UserControl>

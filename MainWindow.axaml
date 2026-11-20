@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AvaloniaApplication2.MainWindow"
+        Title="SHAKE LAB"
+        WindowState="FullScreen"
+        Background="Black">
+
+    <Grid Background="Black">
+
+        <TransitioningContentControl
+            x:Name="PageContent"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <TransitioningContentControl.PageTransition>
+                <CrossFade Duration="0:0:0.35" />
+            </TransitioningContentControl.PageTransition>
+        </TransitioningContentControl>
+
+    </Grid>
+
+</Window>

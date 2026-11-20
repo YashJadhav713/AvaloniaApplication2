@@ -1,0 +1,729 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaloniaApplication2.Assets.Pages.MilkSettingsPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME                                                         -->
+    <!--   BLACK      #0A0A0A (page)   #121212 (panels)                -->
+    <!--   DARK GREEN #00A844 (highlights)                             -->
+    <!--   BORDER     #005C25 (outlines)                               -->
+    <!--   WHITE      text (labels use white at 60% = #99FFFFFF)       -->
+    <!-- ============================================================= -->
+
+    <UserControl.Styles>
+
+        <!-- ========================================================= -->
+        <!-- ON / OFF OPTION BUTTON                                    -->
+        <!-- Selected / unselected colours are set in the code-behind. -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.optionButton">
+
+            <Setter Property="Template">
+
+                <ControlTemplate>
+
+                    <Border
+                        x:Name="OptionBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            Foreground="{TemplateBinding Foreground}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"/>
+
+                    </Border>
+
+                </ControlTemplate>
+
+            </Setter>
+
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+
+        </Style>
+
+        <Style Selector="Button.optionButton:pointerover /template/ Border#OptionBorder">
+            <Setter Property="Opacity" Value="0.85"/>
+        </Style>
+
+        <Style Selector="Button.optionButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+
+        <!-- ========================================================= -->
+        <!-- SAVE BUTTON (dark green)                                  -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.saveButton">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00BD4C"/>
+            <Setter Property="BorderBrush" Value="#00BD4C"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#008A37"/>
+            <Setter Property="BorderBrush" Value="#008A37"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+        </Style>
+
+
+        <!-- ========================================================= -->
+        <!-- CANCEL / EDIT BUTTON (dark with outline)                  -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.cancelButton">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.editButton">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.cancelButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.editButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.cancelButton:pressed, Button.editButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+        <Style Selector="Button.cancelButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#04180B"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.editButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#04180B"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <!-- KEYPAD BUTTON -->
+        <Style Selector="Button.keypadButton">
+            <Setter Property="Height" Value="96"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="42"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+            <Setter Property="RenderTransform" Value="scale(1)"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.08" Easing="CubicEaseOut"/>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#0A3818"/>
+            <Setter Property="BorderBrush" Value="#00C853"/>
+            <Setter Property="Foreground" Value="#00FF66"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.92)"/>
+        </Style>
+        <Style Selector="Button.keypadButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="BorderBrush" Value="#00FF66"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton.keypadAction">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Background" Value="#222222"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+        </Style>
+
+
+        <!-- ========================================================= -->
+        <!-- TEXT BOXES (transparent, sit inside a themed border)      -->
+        <!-- ========================================================= -->
+
+        <Style Selector="TextBox.plainBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CaretBrush" Value="#00A844"/>
+            <Setter Property="SelectionBrush" Value="#6600A844"/>
+            <Setter Property="PlaceholderForeground" Value="#66FFFFFF"/>
+        </Style>
+
+        <Style Selector="TextBox.plainBox /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style Selector="TextBox.plainBox:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style Selector="TextBox.plainBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas Width="1080"
+                Height="1920"
+                Background="#0A0A0A">
+
+            <!-- ===================================================== -->
+            <!-- HEADER -->
+            <!-- ===================================================== -->
+
+            <TextBlock FontFamily="Cascadia Mono"
+                       FontSize="48"
+                       FontWeight="Black"
+                       LetterSpacing="3"
+                       Canvas.Left="70"
+                       Canvas.Top="60">
+                <Run Text="NUTRI" Foreground="White"/><Run Text="POD" Foreground="#00A844"/>
+            </TextBlock>
+
+            <TextBlock Text="ADMIN SETTINGS - MILK CONFIGURATION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="74"
+                       Canvas.Top="120"/>
+
+            <Border Width="940"
+                    Height="3"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="70"
+                    Canvas.Top="155"/>
+
+            <!-- ===================================================== -->
+            <!-- MILK OPTION & PRICE                                   -->
+            <!-- ===================================================== -->
+
+            <!-- MILK -->
+            <TextBlock Text="MILK OPTION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       Canvas.Left="70"
+                       Canvas.Top="190"/>
+
+            <TextBlock Text="ENABLE / DISABLE MILK OPTION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="13"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="70"
+                       Canvas.Top="225"/>
+
+            <Button x:Name="MilkOnButton"
+                    Classes="optionButton"
+                    Content="ON"
+                    Width="455"
+                    Height="80"
+                    Canvas.Left="70"
+                    Canvas.Top="265"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="#121212"
+                    Foreground="White"
+                    BorderBrush="#005C25"
+                    BorderThickness="2"
+                    CornerRadius="14"/>
+
+            <Button x:Name="MilkOffButton"
+                    Classes="optionButton"
+                    Content="OFF"
+                    Width="455"
+                    Height="80"
+                    Canvas.Left="555"
+                    Canvas.Top="265"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="#121212"
+                    Foreground="White"
+                    BorderBrush="#005C25"
+                    BorderThickness="2"
+                    CornerRadius="14"/>
+
+            <!-- MILK PRICE -->
+            <TextBlock Text="MILK PRICE"
+                       FontFamily="Cascadia Mono"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       Canvas.Left="70"
+                       Canvas.Top="380"/>
+
+            <TextBlock Text="ADDITIONAL PRICE FOR MILK BASE"
+                       FontFamily="Cascadia Mono"
+                       FontSize="13"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="70"
+                       Canvas.Top="415"/>
+
+            <Border Width="940"
+                    Height="80"
+                    Background="#121212"
+                    BorderBrush="#005C25"
+                    BorderThickness="2"
+                    CornerRadius="14"
+                    Canvas.Left="70"
+                    Canvas.Top="455">
+
+                <TextBox x:Name="MilkPriceTextBox"
+                         Classes="plainBox"
+                         FontFamily="Cascadia Mono"
+                         FontSize="24"
+                         FontWeight="Bold"
+                         Foreground="White"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="20,0"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         TextAlignment="Center"
+                         PlaceholderText="ENTER MILK PRICE"/>
+            </Border>
+
+            <!-- MILK NUTRITION -->
+            <TextBlock Text="MILK NUTRITION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       Canvas.Left="70"
+                       Canvas.Top="570"/>
+
+            <TextBlock Text="SHOW NUTRITION INFORMATION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="13"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="70"
+                       Canvas.Top="605"/>
+
+            <Button x:Name="NutritionOnButton"
+                    Classes="optionButton"
+                    Content="ON"
+                    Width="455"
+                    Height="80"
+                    Canvas.Left="70"
+                    Canvas.Top="645"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="#121212"
+                    Foreground="White"
+                    BorderBrush="#005C25"
+                    BorderThickness="2"
+                    CornerRadius="14"/>
+
+            <Button x:Name="NutritionOffButton"
+                    Classes="optionButton"
+                    Content="OFF"
+                    Width="455"
+                    Height="80"
+                    Canvas.Left="555"
+                    Canvas.Top="645"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="#121212"
+                    Foreground="White"
+                    BorderBrush="#005C25"
+                    BorderThickness="2"
+                    CornerRadius="14"/>
+
+            <!-- EDIT NUTRITION -->
+            <Button x:Name="EditNutritionButton"
+                    Classes="editButton"
+                    Content="EDIT NUTRITION"
+                    Width="940"
+                    Height="80"
+                    Canvas.Left="70"
+                    Canvas.Top="755"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="2"
+                    CornerRadius="14"/>
+
+            <!-- SAVE / CANCEL -->
+            <Button x:Name="SaveButton"
+                    Classes="saveButton"
+                    Content="SAVE"
+                    Width="455"
+                    Height="85"
+                    Canvas.Left="70"
+                    Canvas.Top="870"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22"
+                    FontWeight="Black"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="2"
+                    CornerRadius="16"/>
+
+            <Button x:Name="CancelButton"
+                    Classes="cancelButton"
+                    Content="CANCEL"
+                    Width="455"
+                    Height="85"
+                    Canvas.Left="555"
+                    Canvas.Top="870"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="2"
+                    CornerRadius="16"/>
+
+            <!-- SEPARATOR -->
+            <Border Width="940"
+                    Height="4"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="70"
+                    Canvas.Top="990"/>
+
+            <!-- ========================================================= -->
+            <!-- ON-SCREEN NUMERIC KEYPAD (WITH NUTRIPOD LOGO BACKGROUND)  -->
+            <!-- ========================================================= -->
+            <Border x:Name="KeypadBorder"
+                    Width="880"
+                    Height="480"
+                    Background="#121212"
+                    BorderBrush="#005C25"
+                    BorderThickness="2"
+                    CornerRadius="18"
+                    Padding="20,16"
+                    Canvas.Left="100"
+                    Canvas.Top="1020">
+
+                <Grid>
+                    <!-- NUTRIPOD LOGO BACKGROUND (50% OPACITY) -->
+                    <Image Source="/Assets/Image/NutripodLogo.png"
+                           Opacity="0.5"
+                           Width="420"
+                           Height="290"
+                           Stretch="Uniform"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False"/>
+
+                    <StackPanel Orientation="Vertical" Spacing="10">
+
+                        <!-- ACTIVE FIELD INDICATOR -->
+                        <Grid ColumnDefinitions="*,Auto" VerticalAlignment="Center">
+                            <TextBlock x:Name="ActiveKeypadLabel"
+                                       Grid.Column="0"
+                                       Text="EDITING: MILK PRICE"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="20"
+                                       FontWeight="Black"
+                                       Foreground="#00A844"
+                                       VerticalAlignment="Center"/>
+
+                            <Button Grid.Column="1"
+                                    Classes="keypadButton keypadAction"
+                                    Width="120"
+                                    Height="46"
+                                    Content="CLR"
+                                    Click="KeypadClear_Click"/>
+                        </Grid>
+
+                        <!-- NUMERIC KEYPAD -->
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                              ColumnDefinitions="*,*,*"
+                              RowSpacing="10"
+                              ColumnSpacing="12">
+                            <Button Grid.Row="0" Grid.Column="0" Content="1" Classes="keypadButton" Click="KeypadDigit_Click" Tag="1"/>
+                            <Button Grid.Row="0" Grid.Column="1" Content="2" Classes="keypadButton" Click="KeypadDigit_Click" Tag="2"/>
+                            <Button Grid.Row="0" Grid.Column="2" Content="3" Classes="keypadButton" Click="KeypadDigit_Click" Tag="3"/>
+
+                            <Button Grid.Row="1" Grid.Column="0" Content="4" Classes="keypadButton" Click="KeypadDigit_Click" Tag="4"/>
+                            <Button Grid.Row="1" Grid.Column="1" Content="5" Classes="keypadButton" Click="KeypadDigit_Click" Tag="5"/>
+                            <Button Grid.Row="1" Grid.Column="2" Content="6" Classes="keypadButton" Click="KeypadDigit_Click" Tag="6"/>
+
+                            <Button Grid.Row="2" Grid.Column="0" Content="7" Classes="keypadButton" Click="KeypadDigit_Click" Tag="7"/>
+                            <Button Grid.Row="2" Grid.Column="1" Content="8" Classes="keypadButton" Click="KeypadDigit_Click" Tag="8"/>
+                            <Button Grid.Row="2" Grid.Column="2" Content="9" Classes="keypadButton" Click="KeypadDigit_Click" Tag="9"/>
+
+                            <Button Grid.Row="3" Grid.Column="0" Content="." Classes="keypadButton" Click="KeypadDigit_Click" Tag="."/>
+                            <Button Grid.Row="3" Grid.Column="1" Content="0" Classes="keypadButton" Click="KeypadDigit_Click" Tag="0"/>
+                            <Button Grid.Row="3" Grid.Column="2" Content="⌫" Classes="keypadButton keypadAction" Click="KeypadBackspace_Click"/>
+                        </Grid>
+
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+            <!-- ===================================================== -->
+            <!-- NUTRITION EDITOR POPUP                                 -->
+            <!-- ===================================================== -->
+
+            <Border x:Name="NutritionEditor"
+                    IsVisible="False"
+                    Width="940"
+                    Height="760"
+                    Background="#121212"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="22"
+                    BoxShadow="0 0 40 0 #4400A844"
+                    Canvas.Left="70"
+                    Canvas.Top="300">
+
+                <Canvas Width="940"
+                        Height="760">
+
+                    <!-- TITLE -->
+                    <TextBlock Text="MILK NUTRITION"
+                               FontFamily="Cascadia Mono"
+                               FontSize="30"
+                               FontWeight="Black"
+                               LetterSpacing="3"
+                               Foreground="White"
+                               TextAlignment="Center"
+                               Width="840"
+                               Canvas.Left="50"
+                               Canvas.Top="35"/>
+
+                    <Border Width="840"
+                            Height="3"
+                            Background="#00A844"
+                            CornerRadius="2"
+                            Canvas.Left="50"
+                            Canvas.Top="85"/>
+
+                    <!-- PROTEIN -->
+                    <TextBlock Text="PROTEIN"
+                               FontFamily="Cascadia Mono"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="#99FFFFFF"
+                               Canvas.Left="50"
+                               Canvas.Top="110"/>
+
+                    <Border Width="740"
+                            Height="60"
+                            Background="#181818"
+                            BorderBrush="#005C25"
+                            BorderThickness="2"
+                            CornerRadius="12"
+                            Canvas.Left="50"
+                            Canvas.Top="140">
+
+                        <TextBox x:Name="ProteinTextBox"
+                                 Classes="plainBox"
+                                 FontFamily="Cascadia Mono"
+                                 FontSize="20"
+                                 FontWeight="Bold"
+                                 Foreground="White"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 TextAlignment="Center"/>
+                    </Border>
+
+                    <!-- CALORIES -->
+                    <TextBlock Text="CALORIES"
+                               FontFamily="Cascadia Mono"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="#99FFFFFF"
+                               Canvas.Left="50"
+                               Canvas.Top="220"/>
+
+                    <Border Width="740"
+                            Height="60"
+                            Background="#181818"
+                            BorderBrush="#005C25"
+                            BorderThickness="2"
+                            CornerRadius="12"
+                            Canvas.Left="50"
+                            Canvas.Top="250">
+
+                        <TextBox x:Name="CaloriesTextBox"
+                                 Classes="plainBox"
+                                 FontFamily="Cascadia Mono"
+                                 FontSize="20"
+                                 FontWeight="Bold"
+                                 Foreground="White"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 TextAlignment="Center"/>
+                    </Border>
+
+                    <!-- BCAA -->
+                    <TextBlock Text="BCAA"
+                               FontFamily="Cascadia Mono"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="#99FFFFFF"
+                               Canvas.Left="50"
+                               Canvas.Top="330"/>
+
+                    <Border Width="740"
+                            Height="60"
+                            Background="#181818"
+                            BorderBrush="#005C25"
+                            BorderThickness="2"
+                            CornerRadius="12"
+                            Canvas.Left="50"
+                            Canvas.Top="360">
+
+                        <TextBox x:Name="BCAAtextBox"
+                                 Classes="plainBox"
+                                 FontFamily="Cascadia Mono"
+                                 FontSize="20"
+                                 FontWeight="Bold"
+                                 Foreground="White"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 TextAlignment="Center"/>
+                    </Border>
+
+                    <!-- TOTAL SUGARS -->
+                    <TextBlock Text="TOTAL SUGARS"
+                               FontFamily="Cascadia Mono"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="#99FFFFFF"
+                               Canvas.Left="50"
+                               Canvas.Top="440"/>
+
+                    <Border Width="740"
+                            Height="60"
+                            Background="#181818"
+                            BorderBrush="#005C25"
+                            BorderThickness="2"
+                            CornerRadius="12"
+                            Canvas.Left="50"
+                            Canvas.Top="470">
+
+                        <TextBox x:Name="TotalSugarsTextBox"
+                                 Classes="plainBox"
+                                 FontFamily="Cascadia Mono"
+                                 FontSize="20"
+                                 FontWeight="Bold"
+                                 Foreground="White"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 TextAlignment="Center"/>
+                    </Border>
+
+                    <!-- BUTTONS -->
+                    <Button x:Name="NutritionSaveButton"
+                            Classes="saveButton"
+                            Content="SAVE"
+                            Width="350"
+                            Height="75"
+                            Canvas.Left="50"
+                            Canvas.Top="570"
+                            FontFamily="Cascadia Mono"
+                            FontSize="20"
+                            FontWeight="Black"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            BorderThickness="2"
+                            CornerRadius="14"/>
+
+                    <Button x:Name="NutritionCancelButton"
+                            Classes="cancelButton"
+                            Content="CANCEL"
+                            Width="350"
+                            Height="75"
+                            Canvas.Left="440"
+                            Canvas.Top="570"
+                            FontFamily="Cascadia Mono"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            BorderThickness="2"
+                            CornerRadius="14"/>
+
+                </Canvas>
+
+            </Border>
+
+            <!-- FOOTER -->
+            <TextBlock Text="NUTRIPOD  |  MILK CONFIGURATION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="12"
+                       FontWeight="Bold"
+                       LetterSpacing="2"
+                       Foreground="#66FFFFFF"
+                       Canvas.Left="60"
+                       Canvas.Top="1765"/>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>

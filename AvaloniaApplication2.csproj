@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>AvaloniaApplication2</RootNamespace>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+
+		<PackageReference Include="Avalonia" Version="12.1.2" />
+
+		<PackageReference Include="Avalonia.Desktop" Version="12.1.2" />
+
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.2" />
+
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.2" />
+
+		<PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3">
+			<IncludeAssets Condition="'$(Configuration)' != 'Debug'">
+				None
+			</IncludeAssets>
+
+			<PrivateAssets Condition="'$(Configuration)' != 'Debug'">
+				All
+			</PrivateAssets>
+		</PackageReference>
+
+		<PackageReference Include="System.IO.Ports" Version="9.0.0" />
+
+		<!-- Required for PhonePe QR -->
+		<PackageReference Include="ZXing.Net" Version="0.16.11" />
+
+	</ItemGroup>
+
+
+	<!-- =============================== -->
+	<!-- SHAKE LAB IMAGES                 -->
+	<!-- =============================== -->
+
+	<ItemGroup>
+
+		<AvaloniaResource Include="Assets\Image\**" />
+
+	</ItemGroup>
+
+
+	<!-- =============================== -->
+	<!-- KEEP FOLDERS                     -->
+	<!-- =============================== -->
+
+	<ItemGroup>
+
+		<Folder Include="Assets\SVG\" />
+
+		<Folder Include="Assets\Video\" />
+
+	</ItemGroup>
+
+
+	<!-- =============================== -->
+	<!-- PHONEPE SETTINGS                 -->
+	<!-- =============================== -->
+
+	<ItemGroup>
+
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+
+	</ItemGroup>
+
+</Project>

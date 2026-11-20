@@ -1,0 +1,230 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaloniaApplication2.Assets.Pages.MenuPage">
+
+    <UserControl.Styles>
+
+        <!-- ========================================================= -->
+        <!-- DRINK CARD                                                -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.drinkCard">
+
+            <Setter Property="Template">
+
+                <ControlTemplate>
+
+                    <Border
+                        x:Name="CardBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="16"
+                        ClipToBounds="True">
+
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"/>
+
+                    </Border>
+
+                </ControlTemplate>
+
+            </Setter>
+
+            <Setter Property="Padding"
+                    Value="0"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch"/>
+
+            <Setter Property="VerticalContentAlignment"
+                    Value="Stretch"/>
+
+        </Style>
+
+        <!-- Soft press feedback on cards -->
+        <Style Selector="Button.drinkCard:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+
+        <!-- ========================================================= -->
+        <!-- NAVIGATION BUTTON                                         -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.navigationButton">
+
+            <Setter Property="Template">
+
+                <ControlTemplate>
+
+                    <Border
+                        x:Name="NavBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="14">
+
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"/>
+
+                    </Border>
+
+                </ControlTemplate>
+
+            </Setter>
+
+            <Setter Property="Padding"
+                    Value="0"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center"/>
+
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+
+        </Style>
+
+        <!-- PREVIOUS hover -->
+        <Style Selector="Button.navigationButton.previous:pointerover /template/ Border#NavBorder">
+            <Setter Property="Background" Value="#008A37"/>
+        </Style>
+
+        <!-- NEXT (dark green) hover -->
+        <Style Selector="Button.navigationButton.next:pointerover /template/ Border#NavBorder">
+            <Setter Property="Background" Value="#00BD4C"/>
+        </Style>
+
+        <Style Selector="Button.navigationButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.96)"/>
+        </Style>
+
+    </UserControl.Styles>
+
+
+    <!-- ============================================================= -->
+    <!-- ============================================================= -->
+    <!-- PORTRAIT DESIGN AREA (1080 x 1920)                             -->
+    <!-- ============================================================= -->
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas Width="1080"
+                Height="1920"
+                Background="#0A0A0A">
+
+            <!-- ===================================================== -->
+            <!-- BACKGROUND                                             -->
+            <!-- ===================================================== -->
+
+            <Image Source="/Assets/Image/MenuPage.png"
+                   Width="1080"
+                   Height="1920"
+                   Stretch="Fill"
+                   Opacity="0.15"
+                   Canvas.Left="0"
+                   Canvas.Top="0"/>
+
+            <!-- ===================================================== -->
+            <!-- HEADER                                                 -->
+            <!-- ===================================================== -->
+
+            <TextBlock FontFamily="Cascadia Mono"
+                       FontSize="48"
+                       FontWeight="Black"
+                       LetterSpacing="3"
+                       Canvas.Left="60"
+                       Canvas.Top="80">
+                <Run Text="NUTRI" Foreground="White"/><Run Text="POD" Foreground="#00A844"/>
+            </TextBlock>
+
+            <TextBlock Text="SELECT YOUR SHAKE OR BAR"
+                       FontFamily="Cascadia Mono"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="64"
+                       Canvas.Top="150"/>
+
+            <Border Width="1056"
+                    Height="3"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="10"
+                    Canvas.Top="195"/>
+
+            <!-- ===================================================== -->
+            <!-- DRINK CARDS                                            -->
+            <!-- ===================================================== -->
+
+            <ScrollViewer Canvas.Left="0"
+                          Canvas.Top="220"
+                          Width="1080"
+                          Height="1290"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                <Canvas x:Name="DrinkCardsCanvas"
+                        Width="1080"
+                        Height="1290"/>
+            </ScrollViewer>
+
+            <!-- ===================================================== -->
+            <!-- PREVIOUS BUTTON                                        -->
+            <!-- ===================================================== -->
+
+            <Button x:Name="BackButton"
+                    Classes="navigationButton previous"
+                    Width="260"
+                    Height="85"
+                    Background="#0A0A0A"
+                    BorderBrush="#008A37"
+                    BorderThickness="3"
+                    Canvas.Left="60"
+                    Canvas.Top="1540"
+                    Click="BackButton_Click">
+
+                <TextBlock Text="‹  PREVIOUS"
+                           FontSize="22"
+                           FontWeight="Black"
+                           LetterSpacing="1"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+            </Button>
+
+            <!-- ===================================================== -->
+            <!-- NEXT BUTTON                                            -->
+            <!-- ===================================================== -->
+
+            <Button x:Name="ContinueButton"
+                    Classes="navigationButton next"
+                    Width="260"
+                    Height="85"
+                    Background="#00A844"
+                    BorderBrush="#00A844"
+                    BorderThickness="3"
+                    Canvas.Left="760"
+                    Canvas.Top="1540"
+                    Click="ContinueButton_Click">
+
+                <TextBlock Text="NEXT  ›"
+                           FontSize="22"
+                           FontWeight="Black"
+                           LetterSpacing="1"
+                           Foreground="#0A0A0A"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+            </Button>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>

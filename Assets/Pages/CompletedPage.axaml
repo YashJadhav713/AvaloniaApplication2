@@ -1,0 +1,300 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="AvaloniaApplication2.Assets.Pages.CompletedPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME                                                         -->
+    <!--   BLACK      #0A0A0A (overlay, panels)   #121212 (panels)     -->
+    <!--   DARK GREEN #00A844 (highlights)                             -->
+    <!--   BORDER     #005C25 (panel outlines)                         -->
+    <!--   WHITE      text (labels use white at 60% = #99FFFFFF)        -->
+    <!-- ============================================================= -->
+
+    <!-- ============================================================= -->
+    <!-- PORTRAIT DESIGN AREA (1080 x 1920)                             -->
+    <!-- ============================================================= -->
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas
+            Width="1080"
+            Height="1920"
+            Background="#0A0A0A">
+
+            <!-- ================================================= -->
+            <!-- BACKGROUND IMAGE                                  -->
+            <!-- ================================================= -->
+
+            <Image
+                Source="/Assets/Image/CompletedPageBackground.png"
+                Width="1080"
+                Height="1920"
+                Stretch="Fill"/>
+
+            <Rectangle
+                Width="1080"
+                Height="1920"
+                Fill="#33000000"/>
+
+            <!-- ================================================= -->
+            <!-- HEADER                                            -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                FontFamily="Cascadia Mono"
+                FontSize="54"
+                FontWeight="Black"
+                LetterSpacing="3"
+                Canvas.Left="60"
+                Canvas.Top="65">
+                <Run Text="NUTRI" Foreground="White"/><Run Text="POD" Foreground="#00A844"/>
+            </TextBlock>
+
+            <TextBlock
+                Text="ORDER COMPLETE"
+                FontFamily="Cascadia Mono"
+                FontSize="16"
+                FontWeight="Bold"
+                LetterSpacing="3"
+                Foreground="#99FFFFFF"
+                Canvas.Left="64"
+                Canvas.Top="138"/>
+
+            <Border
+                Width="960"
+                Height="3"
+                Background="#00A844"
+                CornerRadius="2"
+                Canvas.Left="60"
+                Canvas.Top="190"/>
+
+
+            <!-- ================================================= -->
+            <!-- DELIVERED STATUS                                  -->
+            <!-- ================================================= -->
+
+            <Border
+                x:Name="DeliveredPanel"
+                Width="780"
+                Height="90"
+                Background="#B3000000"
+                BorderBrush="#00A844"
+                BorderThickness="2"
+                CornerRadius="14"
+                Canvas.Left="150"
+                Canvas.Top="240">
+
+                <Grid ColumnDefinitions="Auto,*,Auto" VerticalAlignment="Center" Margin="24,0">
+
+                    <Border
+                        Grid.Column="0"
+                        Width="5"
+                        Height="50"
+                        Background="#00A844"
+                        CornerRadius="3"/>
+
+                    <TextBlock
+                        Grid.Column="1"
+                        x:Name="DeliveredText"
+                        Text="ORDER DELIVERED"
+                        FontFamily="Cascadia Mono"
+                        FontSize="26"
+                        FontWeight="Black"
+                        LetterSpacing="4"
+                        Foreground="White"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Opacity="0"/>
+
+                    <Border
+                        Grid.Column="2"
+                        Width="5"
+                        Height="50"
+                        Background="#00A844"
+                        CornerRadius="3"/>
+
+                </Grid>
+
+            </Border>
+
+            <!-- ================================================= -->
+            <!-- DRINK DISPLAY                                     -->
+            <!-- ================================================= -->
+
+            <Border
+                x:Name="GlassImage"
+                Width="780"
+                Height="700"
+                Background="#B3000000"
+                BorderBrush="#005C25"
+                BorderThickness="2"
+                CornerRadius="22"
+                Canvas.Left="150"
+                Canvas.Top="420"
+                Opacity="0">
+
+                <Canvas>
+
+                    <TextBlock
+                        x:Name="YourItemText"
+                        Text="YOUR DRINK"
+                        FontFamily="Cascadia Mono"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        LetterSpacing="4"
+                        Foreground="White"
+                        Canvas.Left="40"
+                        Canvas.Top="35"/>
+
+                    <Border
+                        Width="700"
+                        Height="2"
+                        Background="#005C25"
+                        Canvas.Left="40"
+                        Canvas.Top="70"/>
+
+                    <Border
+                        Width="700"
+                        Height="580"
+                        Background="#99000000"
+                        BorderBrush="#008A37"
+                        BorderThickness="2"
+                        CornerRadius="18"
+                        Canvas.Left="40"
+                        Canvas.Top="90"/>
+
+                    <Border
+                        Width="600"
+                        Height="5"
+                        Background="#00A844"
+                        CornerRadius="3"
+                        Canvas.Left="90"
+                        Canvas.Top="105"/>
+
+                    <Image
+                        x:Name="DrinkImage"
+                        Width="640"
+                        Height="530"
+                        Stretch="Uniform"
+                        Canvas.Left="70"
+                        Canvas.Top="125"/>
+
+                </Canvas>
+
+            </Border>
+
+
+            <!-- ================================================= -->
+            <!-- ENJOY / THANK YOU TEXT                            -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                x:Name="EnjoyText"
+                Text="ENJOY YOUR"
+                FontFamily="Cascadia Mono"
+                FontSize="20"
+                FontWeight="Bold"
+                LetterSpacing="4"
+                Foreground="#99FFFFFF"
+                Width="1080"
+                TextAlignment="Center"
+                Canvas.Left="0"
+                Canvas.Top="1155"
+                Opacity="0"/>
+
+            <TextBlock
+                x:Name="DrinkText"
+                Text=""
+                FontFamily="Cascadia Mono"
+                FontSize="44"
+                FontWeight="Black"
+                Foreground="White"
+                LetterSpacing="2"
+                Width="1080"
+                TextAlignment="Center"
+                Canvas.Left="0"
+                Canvas.Top="1195"
+                Opacity="0"/>
+
+            <TextBlock
+                x:Name="ThankYouText"
+                Text="THANK YOU FOR CHOOSING NUTRIPOD"
+                FontFamily="Cascadia Mono"
+                FontSize="17"
+                FontWeight="Bold"
+                Foreground="#00A844"
+                LetterSpacing="3"
+                Width="1080"
+                TextAlignment="Center"
+                Canvas.Left="0"
+                Canvas.Top="1265"
+                Opacity="0"/>
+
+
+            <!-- ================================================= -->
+            <!-- RETURNING HOME PANEL                              -->
+            <!-- ================================================= -->
+
+            <Border
+                x:Name="HomePanel"
+                Width="780"
+                Height="125"
+                Background="#B3000000"
+                BorderBrush="#00A844"
+                BorderThickness="2"
+                CornerRadius="18"
+                Canvas.Left="150"
+                Canvas.Top="1330"
+                Opacity="0">
+
+                <Canvas>
+
+                    <TextBlock
+                        Text="THANK YOU"
+                        FontFamily="Cascadia Mono"
+                        FontSize="22"
+                        FontWeight="Bold"
+                        LetterSpacing="3"
+                        Foreground="White"
+                        Canvas.Left="30"
+                        Canvas.Top="25"/>
+
+                    <TextBlock
+                        Text="RETURNING TO HOME AUTOMATICALLY"
+                        FontFamily="Cascadia Mono"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        LetterSpacing="3"
+                        Foreground="#99FFFFFF"
+                        Canvas.Left="30"
+                        Canvas.Top="70"/>
+
+                    <Border
+                        Width="5"
+                        Height="70"
+                        Background="#00A844"
+                        CornerRadius="3"
+                        Canvas.Left="745"
+                        Canvas.Top="27"/>
+
+                </Canvas>
+
+            </Border>
+
+            <!-- FOOTER -->
+            <TextBlock
+                Text="NUTRIPOD  |  AUTOMATED DRINK SYSTEM"
+                FontFamily="Cascadia Mono"
+                FontSize="12"
+                FontWeight="Bold"
+                LetterSpacing="2"
+                Foreground="#66FFFFFF"
+                Canvas.Left="60"
+                Canvas.Top="1765"/>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>

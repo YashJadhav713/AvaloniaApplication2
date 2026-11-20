@@ -1,0 +1,374 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="AvaloniaApplication2.Assets.Pages.PickUpDrinkPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME                                                         -->
+    <!--   BLACK      #0A0A0A (overlay, panels)   #121212 (panels)     -->
+    <!--   DARK GREEN #00A844 (highlights)                             -->
+    <!--   BORDER     #005C25 (panel outlines)                         -->
+    <!--   WHITE      text (labels use white at 60% = #99FFFFFF)        -->
+    <!-- ============================================================= -->
+
+    <!-- ============================================================= -->
+    <!-- PORTRAIT DESIGN AREA (1080 x 1920)                             -->
+    <!-- ============================================================= -->
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas
+            Width="1080"
+            Height="1920"
+            Background="#0A0A0A">
+
+            <!-- ================================================= -->
+            <!-- BACKGROUND IMAGE                                  -->
+            <!-- ================================================= -->
+
+            <Image
+                Source="/Assets/Image/PickUpDrinkPage.png"
+                Width="1080"
+                Height="1920"
+                Stretch="Fill"
+                Opacity="0.2"/>
+
+            <Rectangle
+                Width="1080"
+                Height="1920"
+                Fill="#4D000000"/>
+
+            <!-- ================================================= -->
+            <!-- HEADER                                            -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                FontFamily="Cascadia Mono"
+                FontSize="54"
+                FontWeight="Black"
+                LetterSpacing="3"
+                Canvas.Left="60"
+                Canvas.Top="65">
+                <Run Text="NUTRI" Foreground="White"/><Run Text="POD" Foreground="#00A844"/>
+            </TextBlock>
+
+            <TextBlock
+                Text="ORDER COMPLETE"
+                FontFamily="Cascadia Mono"
+                FontSize="16"
+                FontWeight="Bold"
+                LetterSpacing="3"
+                Foreground="#99FFFFFF"
+                Canvas.Left="64"
+                Canvas.Top="138"/>
+
+            <StackPanel
+                Orientation="Horizontal"
+                Spacing="10"
+                Canvas.Left="700"
+                Canvas.Top="136">
+                <TextBlock
+                    Text="ORDER ID:"
+                    FontFamily="Cascadia Mono"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    LetterSpacing="2"
+                    Foreground="#00A844"
+                    VerticalAlignment="Center"/>
+                <TextBlock
+                    x:Name="OrderIdText"
+                    Text=""
+                    FontFamily="Cascadia Mono"
+                    FontSize="18"
+                    FontWeight="Black"
+                    LetterSpacing="2"
+                    Foreground="White"
+                    VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <Border
+                Width="960"
+                Height="3"
+                Background="#00A844"
+                CornerRadius="2"
+                Canvas.Left="60"
+                Canvas.Top="190"/>
+
+
+            <!-- ================================================= -->
+            <!-- READY STATUS                                      -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                x:Name="ReadyLabel"
+                Text="YOUR DRINK IS READY"
+                FontFamily="Cascadia Mono"
+                FontSize="20"
+                FontWeight="Bold"
+                LetterSpacing="4"
+                Foreground="#00A844"
+                TextAlignment="Center"
+                Width="1080"
+                Canvas.Left="0"
+                Canvas.Top="275"
+                Opacity="0"/>
+
+
+            <!-- ================================================= -->
+            <!-- MAIN TITLE                                        -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                x:Name="PickUpText"
+                Text="PICK UP YOUR DRINK"
+                FontFamily="Cascadia Mono"
+                FontSize="50"
+                FontWeight="Black"
+                LetterSpacing="4"
+                Foreground="White"
+                TextAlignment="Center"
+                Width="1080"
+                Canvas.Left="0"
+                Canvas.Top="340"
+                Opacity="0"/>
+
+            <TextBlock
+                x:Name="PickUpSubText"
+                Text="PLEASE COLLECT YOUR DRINK"
+                FontFamily="Cascadia Mono"
+                FontSize="18"
+                FontWeight="Bold"
+                LetterSpacing="4"
+                Foreground="#99FFFFFF"
+                TextAlignment="Center"
+                Width="1080"
+                Canvas.Left="0"
+                Canvas.Top="425"
+                Opacity="0"/>
+
+
+            <!-- ================================================= -->
+            <!-- VERTICAL DRINK AREA                               -->
+            <!-- ================================================= -->
+
+            <Border
+                Width="780"
+                Height="700"
+                Background="#B3000000"
+                BorderBrush="#005C25"
+                BorderThickness="2"
+                CornerRadius="22"
+                Canvas.Left="150"
+                Canvas.Top="510"/>
+
+
+            <!-- ================================================= -->
+            <!-- DRINK AREA HEADER                                 -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                x:Name="YourItemText"
+                Text="YOUR DRINK"
+                FontFamily="Cascadia Mono"
+                FontSize="16"
+                FontWeight="Bold"
+                LetterSpacing="4"
+                Foreground="White"
+                Canvas.Left="190"
+                Canvas.Top="550"/>
+
+            <Border
+                Width="700"
+                Height="2"
+                Background="#005C25"
+                Canvas.Left="190"
+                Canvas.Top="587"/>
+
+
+            <!-- ================================================= -->
+            <!-- DRINK IMAGE                                       -->
+            <!-- ================================================= -->
+
+            <Canvas
+                x:Name="CupAnimation"
+                Width="360"
+                Height="540"
+                Canvas.Left="360"
+                Canvas.Top="610"
+                RenderTransformOrigin="0.5,0.5"
+                Opacity="0">
+
+                <Canvas.RenderTransform>
+
+                    <ScaleTransform
+                        ScaleX="1"
+                        ScaleY="1"/>
+
+                </Canvas.RenderTransform>
+
+
+                <!-- ============================================= -->
+                <!-- SLIM VERTICAL INNER CARD                      -->
+                <!-- ============================================= -->
+
+                <Border
+                    Width="330"
+                    Height="500"
+                    Background="#99000000"
+                    BorderBrush="#008A37"
+                    BorderThickness="2"
+                    CornerRadius="18"
+                    Canvas.Left="15"
+                    Canvas.Top="15"/>
+
+
+                <!-- ============================================= -->
+                <!-- DARK GREEN TOP ACCENT                         -->
+                <!-- ============================================= -->
+
+                <Border
+                    Width="280"
+                    Height="5"
+                    Background="#00A844"
+                    CornerRadius="3"
+                    Canvas.Left="40"
+                    Canvas.Top="35"/>
+
+
+                <!-- ============================================= -->
+                <!-- DRINK IMAGE                                   -->
+                <!-- ============================================= -->
+
+                <Image
+                    x:Name="DrinkImage"
+                    Width="290"
+                    Height="430"
+                    Stretch="Uniform"
+                    Canvas.Left="35"
+                    Canvas.Top="55"/>
+
+            </Canvas>
+
+
+            <!-- ================================================= -->
+            <!-- PICKUP STATUS                                     -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                x:Name="PickupStatusText"
+                Text="READY FOR PICKUP"
+                FontFamily="Cascadia Mono"
+                FontSize="19"
+                FontWeight="Bold"
+                LetterSpacing="4"
+                Foreground="#00A844"
+                TextAlignment="Center"
+                Width="1080"
+                Canvas.Left="0"
+                Canvas.Top="1245"
+                Opacity="0"/>
+
+
+            <!-- ================================================= -->
+            <!-- INFORMATION PANEL                                 -->
+            <!-- ================================================= -->
+
+            <Border
+                x:Name="InfoPanel"
+                Width="780"
+                Height="125"
+                Background="#B3000000"
+                BorderBrush="#00A844"
+                BorderThickness="2"
+                CornerRadius="18"
+                Canvas.Left="150"
+                Canvas.Top="1330"
+                Opacity="0">
+
+                <Canvas>
+
+                    <TextBlock
+                        x:Name="InfoTitleText"
+                        Text="YOUR DRINK IS READY"
+                        FontFamily="Cascadia Mono"
+                        FontSize="22"
+                        FontWeight="Bold"
+                        LetterSpacing="3"
+                        Foreground="White"
+                        Canvas.Left="30"
+                        Canvas.Top="25"/>
+
+                    <TextBlock
+                        x:Name="InfoSubText"
+                        Text="PLEASE TAKE YOUR DRINK"
+                        FontFamily="Cascadia Mono"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        LetterSpacing="3"
+                        Foreground="#99FFFFFF"
+                        Canvas.Left="30"
+                        Canvas.Top="70"/>
+
+                    <Border
+                        Width="5"
+                        Height="70"
+                        Background="#00A844"
+                        CornerRadius="3"
+                        Canvas.Left="745"
+                        Canvas.Top="27"/>
+
+                </Canvas>
+
+            </Border>
+
+
+            <!-- ================================================= -->
+            <!-- BAR TIMEOUT COUNTDOWN (Bar 1 & Bar 2 only)        -->
+            <!-- ================================================= -->
+
+            <Border
+                x:Name="BarCountdownPanel"
+                Width="620"
+                Height="60"
+                Background="#B3000000"
+                BorderBrush="#00A844"
+                BorderThickness="2"
+                CornerRadius="16"
+                Canvas.Left="230"
+                Canvas.Top="1485"
+                IsVisible="False">
+
+                <TextBlock
+                    x:Name="BarCountdownText"
+                    Text="RETURNING TO HOME IN 10s"
+                    FontFamily="Cascadia Mono"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    LetterSpacing="2"
+                    Foreground="#00A844"
+                    TextAlignment="Center"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+
+            </Border>
+
+
+            <!-- ================================================= -->
+            <!-- FOOTER                                            -->
+            <!-- ================================================= -->
+
+            <TextBlock
+                Text="NUTRIPOD  |  AUTOMATED DRINK SYSTEM"
+                FontFamily="Cascadia Mono"
+                FontSize="12"
+                FontWeight="Bold"
+                LetterSpacing="2"
+                Foreground="#66FFFFFF"
+                Canvas.Left="60"
+                Canvas.Top="1765"/>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>

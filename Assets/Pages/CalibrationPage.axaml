@@ -1,0 +1,536 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="1080"
+    d:DesignHeight="1920"
+    x:Class="AvaloniaApplication2.Assets.Pages.CalibrationPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME STYLES                                                  -->
+    <!--   BLACK       #0A0A0A (background)   #121212 (panels)        -->
+    <!--   DARK GREEN  #00A844 (highlights, save)  #005C25 (borders)   -->
+    <!--   INPUTS      #181818 (background)   White / Green (text)    -->
+    <!-- ============================================================= -->
+    <UserControl.Styles>
+
+        <!-- ROW CONTAINER -->
+        <Style Selector="Border.calibRow">
+            <Setter Property="Width" Value="940"/>
+            <Setter Property="Height" Value="58"/>
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+
+        <!-- ROW LABEL -->
+        <Style Selector="TextBlock.rowLabel">
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="380"/>
+        </Style>
+
+        <!-- CALIBRATION TEXTBOX -->
+        <Style Selector="TextBox.calibInput">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+            <Setter Property="CaretBrush" Value="#00A844"/>
+            <Setter Property="SelectionBrush" Value="#6600A844"/>
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="8"/>
+        </Style>
+
+        <Style Selector="TextBox.calibInput /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+        </Style>
+
+        <Style Selector="TextBox.calibInput:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="TextBox.calibInput:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="BorderBrush" Value="#00FF66"/>
+        </Style>
+
+        <!-- WATER INPUT (Distinct Cyan tint) -->
+        <Style Selector="TextBox.waterInput">
+            <Setter Property="Foreground" Value="#00D2FF"/>
+            <Setter Property="CaretBrush" Value="#00D2FF"/>
+        </Style>
+
+        <!-- SAVE BUTTON -->
+        <Style Selector="Button.saveButton">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00BD4C"/>
+            <Setter Property="BorderBrush" Value="#00BD4C"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#008A37"/>
+            <Setter Property="BorderBrush" Value="#008A37"/>
+            <Setter Property="Foreground" Value="#0A0A0A"/>
+        </Style>
+
+        <Style Selector="Button.saveButton:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#005C25"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="Foreground" Value="#99FFFFFF"/>
+        </Style>
+
+        <!-- BACK BUTTON -->
+        <Style Selector="Button.backButton">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.backButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.backButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.98)"/>
+        </Style>
+
+        <Style Selector="Button.backButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#04180B"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <!-- KEYPAD BUTTON -->
+        <Style Selector="Button.keypadButton">
+            <Setter Property="Height" Value="86"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+            <Setter Property="RenderTransform" Value="scale(1)"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.08" Easing="CubicEaseOut"/>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#0A3818"/>
+            <Setter Property="BorderBrush" Value="#00C853"/>
+            <Setter Property="Foreground" Value="#00FF66"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.92)"/>
+        </Style>
+
+        <Style Selector="Button.keypadButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#00A844"/>
+            <Setter Property="BorderBrush" Value="#00FF66"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.keypadAction">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Background" Value="#222222"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+        </Style>
+
+        <Style Selector="Button.keypadNav">
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
+
+        <Style Selector="Button.keypadNav:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <Viewbox Stretch="Fill">
+        <Canvas Width="1080" Height="1920" Background="#0A0A0A">
+
+            <!-- PAGE HEADER -->
+            <TextBlock FontFamily="Cascadia Mono"
+                       FontSize="42"
+                       FontWeight="Black"
+                       LetterSpacing="3"
+                       Canvas.Left="70"
+                       Canvas.Top="45">
+                <Run Text="NUTRI" Foreground="White"/><Run Text="POD" Foreground="#00A844"/>
+            </TextBlock>
+
+            <TextBlock Text="CALIBRATION SETTINGS"
+                       FontFamily="Cascadia Mono"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       LetterSpacing="2"
+                       Foreground="#00A844"
+                       Canvas.Left="350"
+                       Canvas.Top="60"/>
+
+            <!-- CONTROLLER IP & STATUS BAR -->
+            <Border Width="940"
+                    Height="54"
+                    Background="#121212"
+                    BorderBrush="#005C25"
+                    BorderThickness="1.5"
+                    CornerRadius="10"
+                    Padding="15,0"
+                    Canvas.Left="70"
+                    Canvas.Top="115">
+                <Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto" VerticalAlignment="Center">
+
+                    <!-- IP LABEL -->
+                    <TextBlock Grid.Column="0"
+                               Text="PI IP:"
+                               FontFamily="Cascadia Mono"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="#99FFFFFF"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+
+                    <!-- IP INPUT -->
+                    <TextBox x:Name="ControllerIpBox"
+                             Grid.Column="1"
+                             Width="180"
+                             Height="38"
+                             FontFamily="Cascadia Mono"
+                             FontSize="16"
+                             FontWeight="Bold"
+                             Foreground="White"
+                             Background="#181818"
+                             BorderBrush="#005C25"
+                             BorderThickness="1.5"
+                             CornerRadius="6"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Text="127.0.0.1"/>
+
+                    <!-- PORT LABEL -->
+                    <TextBlock Grid.Column="2"
+                               Text=":5000"
+                               FontFamily="Cascadia Mono"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="#99FFFFFF"
+                               VerticalAlignment="Center"
+                               Margin="8,0,20,0"/>
+
+                    <!-- STATUS BADGE -->
+                    <Border x:Name="MachineStatusBadge"
+                            Grid.Column="4"
+                            Background="#181818"
+                            BorderBrush="#005C25"
+                            BorderThickness="1.5"
+                            CornerRadius="8"
+                            Padding="12,6"
+                            VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                            <Border x:Name="MachineStatusDot"
+                                    Width="12" Height="12"
+                                    CornerRadius="6"
+                                    Background="#00A844"/>
+                            <TextBlock x:Name="MachineStatusText"
+                                       Text="STATUS: CHECKING..."
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="14"
+                                       FontWeight="Black"
+                                       Foreground="#00A844"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- TABLE HEADER -->
+            <Border Width="940" Height="46"
+                    Background="#00A844"
+                    CornerRadius="10"
+                    Canvas.Left="70" Canvas.Top="185"/>
+
+            <TextBlock Text="MENU / CANISTER"
+                       FontFamily="Cascadia Mono"
+                       FontSize="16"
+                       FontWeight="Black"
+                       Foreground="#0A0A0A"
+                       VerticalAlignment="Center"
+                       Width="360"
+                       Canvas.Left="95" Canvas.Top="198"/>
+
+            <TextBlock Text="POWDER TIME (S)"
+                       FontFamily="Cascadia Mono"
+                       FontSize="16"
+                       FontWeight="Black"
+                       Foreground="#0A0A0A"
+                       TextAlignment="Center"
+                       Width="200"
+                       Canvas.Left="555" Canvas.Top="198"/>
+
+            <TextBlock Text="WATER TIME (S)"
+                       FontFamily="Cascadia Mono"
+                       FontSize="16"
+                       FontWeight="Black"
+                       Foreground="#0A0A0A"
+                       TextAlignment="Center"
+                       Width="200"
+                       Canvas.Left="785" Canvas.Top="198"/>
+
+            <!-- MENU 1 -->
+            <Border Classes="calibRow" Canvas.Left="70" Canvas.Top="242"/>
+            <TextBlock x:Name="Menu1Label" Classes="rowLabel" Text="MENU 1 (CANISTER 1)" Canvas.Left="95" Canvas.Top="260"/>
+            <TextBox x:Name="PowderBox_1" Classes="calibInput" Tag="0" Canvas.Left="555" Canvas.Top="247"/>
+            <TextBox x:Name="WaterBox_1" Classes="calibInput waterInput" Tag="8" Canvas.Left="785" Canvas.Top="247"/>
+
+            <!-- MENU 2 -->
+            <Border Classes="calibRow" Canvas.Left="70" Canvas.Top="307"/>
+            <TextBlock x:Name="Menu2Label" Classes="rowLabel" Text="MENU 2 (CANISTER 2)" Canvas.Left="95" Canvas.Top="325"/>
+            <TextBox x:Name="PowderBox_2" Classes="calibInput" Tag="1" Canvas.Left="555" Canvas.Top="312"/>
+            <TextBox x:Name="WaterBox_2" Classes="calibInput waterInput" Tag="9" Canvas.Left="785" Canvas.Top="312"/>
+
+            <!-- MENU 3 -->
+            <Border Classes="calibRow" Canvas.Left="70" Canvas.Top="372"/>
+            <TextBlock x:Name="Menu3Label" Classes="rowLabel" Text="MENU 3 (CANISTER 3)" Canvas.Left="95" Canvas.Top="390"/>
+            <TextBox x:Name="PowderBox_3" Classes="calibInput" Tag="2" Canvas.Left="555" Canvas.Top="377"/>
+            <TextBox x:Name="WaterBox_3" Classes="calibInput waterInput" Tag="10" Canvas.Left="785" Canvas.Top="377"/>
+
+            <!-- MENU 4 -->
+            <Border Classes="calibRow" Canvas.Left="70" Canvas.Top="437"/>
+            <TextBlock x:Name="Menu4Label" Classes="rowLabel" Text="MENU 4 (CANISTER 4)" Canvas.Left="95" Canvas.Top="455"/>
+            <TextBox x:Name="PowderBox_4" Classes="calibInput" Tag="3" Canvas.Left="555" Canvas.Top="442"/>
+            <TextBox x:Name="WaterBox_4" Classes="calibInput waterInput" Tag="11" Canvas.Left="785" Canvas.Top="442"/>
+
+            <!-- MENU 5 -->
+            <Border Classes="calibRow" Canvas.Left="70" Canvas.Top="502"/>
+            <TextBlock x:Name="Menu5Label" Classes="rowLabel" Text="MENU 5 (CANISTER 5)" Canvas.Left="95" Canvas.Top="520"/>
+            <TextBox x:Name="PowderBox_5" Classes="calibInput" Tag="4" Canvas.Left="555" Canvas.Top="507"/>
+            <TextBox x:Name="WaterBox_5" Classes="calibInput waterInput" Tag="12" Canvas.Left="785" Canvas.Top="507"/>
+
+            <!-- MENU 6 -->
+            <Border Classes="calibRow" Canvas.Left="70" Canvas.Top="567"/>
+            <TextBlock x:Name="Menu6Label" Classes="rowLabel" Text="MENU 6 (CANISTER 6)" Canvas.Left="95" Canvas.Top="585"/>
+            <TextBox x:Name="PowderBox_6" Classes="calibInput" Tag="5" Canvas.Left="555" Canvas.Top="572"/>
+            <TextBox x:Name="WaterBox_6" Classes="calibInput waterInput" Tag="13" Canvas.Left="785" Canvas.Top="572"/>
+
+            <!-- MENU 7 -->
+            <Border Classes="calibRow" Canvas.Left="70" Canvas.Top="632"/>
+            <TextBlock x:Name="Menu7Label" Classes="rowLabel" Text="MENU 7 (CANISTER 7)" Canvas.Left="95" Canvas.Top="650"/>
+            <TextBox x:Name="PowderBox_7" Classes="calibInput" Tag="6" Canvas.Left="555" Canvas.Top="637"/>
+            <TextBox x:Name="WaterBox_7" Classes="calibInput waterInput" Tag="14" Canvas.Left="785" Canvas.Top="637"/>
+
+            <!-- MENU 8 -->
+            <Border Classes="calibRow" Canvas.Left="70" Canvas.Top="697"/>
+            <TextBlock x:Name="Menu8Label" Classes="rowLabel" Text="MENU 8 (CANISTER 8)" Canvas.Left="95" Canvas.Top="715"/>
+            <TextBox x:Name="PowderBox_8" Classes="calibInput" Tag="7" Canvas.Left="555" Canvas.Top="702"/>
+            <TextBox x:Name="WaterBox_8" Classes="calibInput waterInput" Tag="15" Canvas.Left="785" Canvas.Top="702"/>
+
+            <!-- STATUS MESSAGE & LOADING PROGRESS -->
+            <TextBlock x:Name="StatusMessageText"
+                       Text=""
+                       FontFamily="Cascadia Mono"
+                       FontSize="24"
+                       FontWeight="Black"
+                       LetterSpacing="2"
+                       Foreground="#00A844"
+                       TextAlignment="Center"
+                       Width="940"
+                       Canvas.Left="70"
+                       Canvas.Top="765"/>
+
+            <ProgressBar x:Name="LoadingProgressBar"
+                         Width="500"
+                         Height="6"
+                         Background="#181818"
+                         Foreground="#00A844"
+                         IsIndeterminate="True"
+                         IsVisible="False"
+                         Canvas.Left="290"
+                         Canvas.Top="800"/>
+
+            <!-- ACTION BUTTONS: SAVE & BACK -->
+            <Button x:Name="SaveCalibrationButton"
+                    Classes="saveButton"
+                    Content="SAVE CALIBRATION"
+                    Width="455" Height="80"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22" FontWeight="Black"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="2"
+                    CornerRadius="14"
+                    Click="SaveCalibrationButton_Click"
+                    Canvas.Left="70" Canvas.Top="825"/>
+
+            <Button x:Name="BackButton"
+                    Classes="backButton"
+                    Content="BACK"
+                    Width="455" Height="80"
+                    FontFamily="Cascadia Mono"
+                    FontSize="22" FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="2"
+                    CornerRadius="14"
+                    Click="BackButton_Click"
+                    Canvas.Left="555" Canvas.Top="825"/>
+
+            <!-- BOTTOM ACCENT -->
+            <Border Width="940"
+                    Height="4"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="70"
+                    Canvas.Top="925"/>
+
+            <!-- ON-SCREEN TOUCH NUMERIC KEYPAD WITH DECIMAL POINT -->
+            <Border x:Name="KeypadBorder"
+                    Width="940"
+                    Height="510"
+                    Background="#121212"
+                    BorderBrush="#005C25"
+                    BorderThickness="2"
+                    CornerRadius="18"
+                    Padding="22,14"
+                    Canvas.Left="70"
+                    Canvas.Top="945">
+
+                <Grid>
+                    <!-- NUTRIPOD LOGO WATERMARK BACKGROUND -->
+                    <Image Source="/Assets/Image/NutripodLogo.png"
+                           Opacity="0.4"
+                           Width="380"
+                           Height="260"
+                           Stretch="Uniform"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False"/>
+
+                    <StackPanel Orientation="Vertical" Spacing="8">
+
+                        <!-- ACTIVE FIELD INDICATOR & NAVIGATION -->
+                        <Grid ColumnDefinitions="*,Auto,Auto,Auto" VerticalAlignment="Center">
+                            <TextBlock x:Name="ActiveFieldLabel"
+                                       Grid.Column="0"
+                                       Text="EDITING: MENU 1 - POWDER TIME"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="19"
+                                       FontWeight="Black"
+                                       Foreground="#00A844"
+                                       VerticalAlignment="Center"/>
+
+                            <Button Grid.Column="1"
+                                    Classes="keypadNav"
+                                    Width="85"
+                                    Height="44"
+                                    Margin="0,0,8,0"
+                                    Content="◀"
+                                    Click="PrevField_Click"/>
+
+                            <Button Grid.Column="2"
+                                    Classes="keypadNav"
+                                    Width="85"
+                                    Height="44"
+                                    Margin="0,0,8,0"
+                                    Content="▶"
+                                    Click="NextField_Click"/>
+
+                            <Button Grid.Column="3"
+                                    Classes="keypadButton keypadAction"
+                                    Width="95"
+                                    Height="44"
+                                    Content="CLR"
+                                    Click="KeypadClear_Click"/>
+                        </Grid>
+
+                        <!-- NUMERIC KEYPAD (INCLUDES DECIMAL POINT) -->
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                              ColumnDefinitions="*,*,*"
+                              RowSpacing="8"
+                              ColumnSpacing="12">
+
+                            <Button Grid.Row="0" Grid.Column="0" Content="1" Classes="keypadButton" Click="KeypadDigit_Click" Tag="1"/>
+                            <Button Grid.Row="0" Grid.Column="1" Content="2" Classes="keypadButton" Click="KeypadDigit_Click" Tag="2"/>
+                            <Button Grid.Row="0" Grid.Column="2" Content="3" Classes="keypadButton" Click="KeypadDigit_Click" Tag="3"/>
+
+                            <Button Grid.Row="1" Grid.Column="0" Content="4" Classes="keypadButton" Click="KeypadDigit_Click" Tag="4"/>
+                            <Button Grid.Row="1" Grid.Column="1" Content="5" Classes="keypadButton" Click="KeypadDigit_Click" Tag="5"/>
+                            <Button Grid.Row="1" Grid.Column="2" Content="6" Classes="keypadButton" Click="KeypadDigit_Click" Tag="6"/>
+
+                            <Button Grid.Row="2" Grid.Column="0" Content="7" Classes="keypadButton" Click="KeypadDigit_Click" Tag="7"/>
+                            <Button Grid.Row="2" Grid.Column="1" Content="8" Classes="keypadButton" Click="KeypadDigit_Click" Tag="8"/>
+                            <Button Grid.Row="2" Grid.Column="2" Content="9" Classes="keypadButton" Click="KeypadDigit_Click" Tag="9"/>
+
+                            <!-- DECIMAL POINT (.) -->
+                            <Button Grid.Row="3" Grid.Column="0" Content="." Classes="keypadButton keypadAction" Click="KeypadDot_Click" Tag="."/>
+                            <Button Grid.Row="3" Grid.Column="1" Content="0" Classes="keypadButton" Click="KeypadDigit_Click" Tag="0"/>
+                            <!-- BACKSPACE (⌫) -->
+                            <Button Grid.Row="3" Grid.Column="2" Content="⌫" Classes="keypadButton keypadAction" Click="KeypadBackspace_Click"/>
+                        </Grid>
+
+                        <!-- QUICK ADJUST SHORTCUTS -->
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12" Margin="0,4,0,0">
+                            <Button Grid.Column="0" Classes="keypadNav" Height="42" Content="+0.5s" Click="KeypadAddHalf_Click"/>
+                            <Button Grid.Column="1" Classes="keypadNav" Height="42" Content="+1.0s" Click="KeypadAddOne_Click"/>
+                            <Button Grid.Column="2" Classes="keypadNav" Height="42" Content="RESET TO DEFAULT" Click="KeypadResetDefault_Click"/>
+                        </Grid>
+
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+        </Canvas>
+    </Viewbox>
+
+</UserControl>

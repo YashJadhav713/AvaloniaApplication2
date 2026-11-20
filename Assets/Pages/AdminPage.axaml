@@ -1,0 +1,377 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="1080"
+    d:DesignHeight="1920"
+    x:Class="AvaloniaApplication2.Assets.Pages.AdminPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME                                                         -->
+    <!--   BLACK      #0A0A0A (page)   #121212 (buttons)             -->
+    <!--   DARK GREEN #00A844 (highlights)                             -->
+    <!--   BORDER     #005C25 (button outlines)                        -->
+    <!--   WHITE      text (labels use white at 60% = #99FFFFFF)       -->
+    <!-- ============================================================= -->
+
+    <UserControl.Styles>
+
+        <!-- ========================================================= -->
+        <!-- ADMIN MENU BUTTON                                         -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.adminButton">
+            <Setter Property="Width" Value="780"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="LetterSpacing" Value="3"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.adminButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.adminButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.98)"/>
+        </Style>
+
+        <Style Selector="Button.adminButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#04180B"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <!-- BACK TO HOME BUTTON (green outline) -->
+        <Style Selector="Button.homeButton">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.homeButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00BD4C"/>
+            <Setter Property="Foreground" Value="#00BD4C"/>
+        </Style>
+
+        <Style Selector="Button.homeButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#04180B"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <!-- EXIT APPLICATION BUTTON (red alert outline) -->
+        <Style Selector="Button.appExitButton">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Foreground" Value="#FF4D4D"/>
+            <Setter Property="BorderBrush" Value="#B3261E"/>
+        </Style>
+
+        <Style Selector="Button.appExitButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#2A0B0B"/>
+            <Setter Property="BorderBrush" Value="#FF4D4D"/>
+            <Setter Property="Foreground" Value="#FF6B6B"/>
+        </Style>
+
+        <Style Selector="Button.appExitButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#1F0707"/>
+            <Setter Property="BorderBrush" Value="#FF4D4D"/>
+            <Setter Property="Foreground" Value="#FF4D4D"/>
+        </Style>
+
+        <!-- CONFIRM YES BUTTON (solid red) -->
+        <Style Selector="Button.confirmYesButton">
+            <Setter Property="Background" Value="#FF3B30"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FF3B30"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.confirmYesButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#E02D22"/>
+            <Setter Property="BorderBrush" Value="#E02D22"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.confirmYesButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+        <!-- CONFIRM NO BUTTON (dark with green outline) -->
+        <Style Selector="Button.confirmNoButton">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.confirmNoButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.confirmNoButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <Viewbox Stretch="Fill">
+        <Canvas Width="1080" Height="1920" Background="#0A0A0A">
+
+            <!-- HEADER -->
+            <TextBlock FontFamily="Cascadia Mono"
+                       FontSize="54"
+                       FontWeight="Black"
+                       LetterSpacing="3"
+                       Canvas.Left="60"
+                       Canvas.Top="65">
+                <Run Text="NUTRI" Foreground="White"/><Run Text="POD" Foreground="#00A844"/>
+            </TextBlock>
+
+            <TextBlock Text="ADMIN SETTINGS"
+                       FontFamily="Cascadia Mono"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="64"
+                       Canvas.Top="138"/>
+
+            <Border Width="960"
+                    Height="3"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="60"
+                    Canvas.Top="190"/>
+
+            <!-- PAGE TITLE -->
+            <TextBlock Text="ADMIN SETTINGS"
+                       FontFamily="Cascadia Mono"
+                       FontSize="34"
+                       FontWeight="Black"
+                       LetterSpacing="4"
+                       Foreground="White"
+                       TextAlignment="Center"
+                       Width="1080"
+                       Canvas.Left="0"
+                       Canvas.Top="270"/>
+
+            <!-- PAYMENT SETTINGS -->
+            <Button x:Name="PaymentSettingsButton"
+                    Classes="adminButton"
+                    Content="PAYMENT SETTINGS"
+                    Canvas.Left="150"
+                    Canvas.Top="380"/>
+
+            <!-- MILK SETTINGS -->
+            <Button x:Name="MilkSettingsButton"
+                    Classes="adminButton"
+                    Content="MILK SETTINGS"
+                    Canvas.Left="150"
+                    Canvas.Top="530"/>
+
+            <!-- AVAILABLE STOCK -->
+            <Button x:Name="AvailableStockButton"
+                    Classes="adminButton"
+                    Content="AVAILABLE STOCK"
+                    Canvas.Left="150"
+                    Canvas.Top="680"/>
+
+            <!-- DRINK SETTINGS -->
+            <Button x:Name="DrinkSettingsButton"
+                    Classes="adminButton"
+                    Content="DRINK SETTINGS"
+                    Canvas.Left="150"
+                    Canvas.Top="830"/>
+
+            <!-- CALIBRATION -->
+            <Button x:Name="CalibrationButton"
+                    Classes="adminButton"
+                    Content="CALIBRATION"
+                    Canvas.Left="150"
+                    Canvas.Top="980"/>
+
+            <!-- VMM SETTINGS -->
+            <Button x:Name="VMMSettingsButton"
+                    Classes="adminButton"
+                    Content="VMM SETTINGS"
+                    Canvas.Left="150"
+                    Canvas.Top="1130"/>
+
+            <!-- CHANGE PASSWORD -->
+            <Button x:Name="ChangePasswordButton"
+                    Classes="adminButton"
+                    Content="CHANGE PASSWORD"
+                    Canvas.Left="150"
+                    Canvas.Top="1280"/>
+
+            <!-- DARK GREEN ACCENT -->
+            <Border Width="780"
+                    Height="4"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="150"
+                    Canvas.Top="1420"/>
+
+            <!-- BACK TO HOME (RETURNS TO KIOSK HOME) -->
+            <Button x:Name="HomeButton"
+                    Classes="adminButton homeButton"
+                    Content="BACK TO HOME"
+                    Height="85"
+                    Canvas.Left="150"
+                    Canvas.Top="1450"/>
+
+            <!-- EXIT APPLICATION (SHUTS DOWN PROGRAM) -->
+            <Button x:Name="ExitAppButton"
+                    Classes="adminButton appExitButton"
+                    Content="EXIT APPLICATION"
+                    Height="85"
+                    Canvas.Left="150"
+                    Canvas.Top="1555"/>
+
+            <!-- FOOTER -->
+            <TextBlock Text="NUTRIPOD  |  ADMINISTRATION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="12"
+                       FontWeight="Bold"
+                       LetterSpacing="2"
+                       Foreground="#66FFFFFF"
+                       Canvas.Left="60"
+                       Canvas.Top="1765"/>
+
+            <!-- ========================================================= -->
+            <!-- EXIT CONFIRMATION POPUP OVERLAY                           -->
+            <!-- ========================================================= -->
+            <Border x:Name="ExitConfirmOverlay"
+                    Width="1080"
+                    Height="1920"
+                    Canvas.Left="0"
+                    Canvas.Top="0"
+                    Background="#E6000000"
+                    IsVisible="False">
+
+                <Border Width="820"
+                        Padding="48,46,48,46"
+                        Background="#0F0F0F"
+                        BorderBrush="#FF3B30"
+                        BorderThickness="2.5"
+                        CornerRadius="24"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BoxShadow="0 0 50 0 #55FF3B30">
+
+                    <StackPanel Spacing="24" HorizontalAlignment="Center">
+
+                        <!-- BRAND -->
+                        <TextBlock Text="NUTRIPOD"
+                                   FontFamily="Cascadia Mono"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   LetterSpacing="4"
+                                   Foreground="#00A844"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+                        <!-- POWER / EXIT ICON -->
+                        <Border Width="110"
+                                Height="110"
+                                CornerRadius="55"
+                                Background="#22FF3B30"
+                                BorderBrush="#FF3B30"
+                                BorderThickness="3"
+                                HorizontalAlignment="Center">
+                            <TextBlock Text="⏻"
+                                       FontFamily="Cascadia Mono"
+                                       FontSize="54"
+                                       FontWeight="Black"
+                                       Foreground="#FF3B30"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- TITLE -->
+                        <TextBlock Text="EXIT APPLICATION"
+                                   FontFamily="Cascadia Mono"
+                                   FontSize="36"
+                                   FontWeight="Black"
+                                   LetterSpacing="2"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+                        <!-- ACCENT DIVIDER -->
+                        <Border Width="300"
+                                Height="3"
+                                Background="#FF3B30"
+                                CornerRadius="2"
+                                HorizontalAlignment="Center"/>
+
+                        <!-- CONFIRMATION MESSAGE -->
+                        <TextBlock Text="Are you sure you want to exit from the complete application?"
+                                   FontFamily="Cascadia Mono"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Foreground="#CCFFFFFF"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   MaxWidth="680"
+                                   Margin="0,8,0,16"/>
+
+                        <!-- BUTTONS: YES / NO -->
+                        <Grid ColumnDefinitions="*,24,*" Width="720">
+                            <!-- YES: EXIT COMPLETE APPLICATION -->
+                            <Button x:Name="ConfirmExitYesButton"
+                                    Grid.Column="0"
+                                    Classes="confirmYesButton"
+                                    Height="85"
+                                    FontFamily="Cascadia Mono"
+                                    FontSize="24"
+                                    FontWeight="Black"
+                                    LetterSpacing="2"
+                                    Content="YES, EXIT"
+                                    BorderThickness="2"
+                                    CornerRadius="16"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"/>
+
+                            <!-- NO: STAY ON APPLICATION -->
+                            <Button x:Name="ConfirmExitNoButton"
+                                    Grid.Column="2"
+                                    Classes="confirmNoButton"
+                                    Height="85"
+                                    FontFamily="Cascadia Mono"
+                                    FontSize="24"
+                                    FontWeight="Black"
+                                    LetterSpacing="2"
+                                    Content="NO, STAY"
+                                    BorderThickness="2"
+                                    CornerRadius="16"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"/>
+                        </Grid>
+
+                    </StackPanel>
+
+                </Border>
+
+            </Border>
+
+        </Canvas>
+    </Viewbox>
+</UserControl>

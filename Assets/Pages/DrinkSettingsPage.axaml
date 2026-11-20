@@ -1,0 +1,188 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaloniaApplication2.Assets.Pages.DrinkSettingsPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME                                                         -->
+    <!--   BLACK      #0A0A0A (page)   #121212 (cards)                 -->
+    <!--   DARK GREEN #00A844 (highlights)                             -->
+    <!--   BORDER     #005C25 (outlines)                               -->
+    <!--   WHITE      text (labels use white at 60% = #99FFFFFF)       -->
+    <!-- ============================================================= -->
+
+    <UserControl.Styles>
+
+        <!-- ========================================================= -->
+        <!-- DRINK CARD (created in the code-behind)                   -->
+        <!-- Own template so the default grey hover colour never shows -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.settingsCard">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border
+                        x:Name="CardBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+
+                        <ContentPresenter
+                            x:Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.settingsCard:pointerover /template/ Border#CardBorder">
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Background" Value="#072B14"/>
+        </Style>
+
+        <Style Selector="Button.settingsCard:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.98)"/>
+        </Style>
+
+        <Style Selector="Button.settingsCard:pressed /template/ Border#CardBorder">
+            <Setter Property="BorderBrush" Value="#00FF66"/>
+            <Setter Property="Background" Value="#05200E"/>
+        </Style>
+
+
+        <!-- ========================================================= -->
+        <!-- BACK BUTTON (dark with outline)                           -->
+        <!-- ========================================================= -->
+
+        <Style Selector="Button.backButton">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.backButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#072B14"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+        <Style Selector="Button.backButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.98)"/>
+        </Style>
+
+        <Style Selector="Button.backButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#04180B"/>
+            <Setter Property="BorderBrush" Value="#00A844"/>
+            <Setter Property="Foreground" Value="#00A844"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas Width="1080"
+                Height="1920"
+                Background="#0A0A0A">
+
+            <!-- TITLE -->
+
+            <TextBlock Text="DRINK SETTINGS"
+                       FontFamily="Cascadia Mono"
+                       FontSize="44"
+                       FontWeight="Black"
+                       Foreground="White"
+                       Canvas.Left="70"
+                       Canvas.Top="80"/>
+
+            <!-- SLIDE CONTROLS (QUICK SCROLL) -->
+            <Button x:Name="SlideUpButton"
+                    Classes="backButton"
+                    Width="180"
+                    Height="55"
+                    FontFamily="Cascadia Mono"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Foreground="#00A844"
+                    BorderBrush="#00A844"
+                    Content="▲ SLIDE UP"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Canvas.Left="600"
+                    Canvas.Top="75"/>
+
+            <Button x:Name="SlideDownButton"
+                    Classes="backButton"
+                    Width="180"
+                    Height="55"
+                    FontFamily="Cascadia Mono"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Foreground="#00A844"
+                    BorderBrush="#00A844"
+                    Content="▼ SLIDE DOWN"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Canvas.Left="830"
+                    Canvas.Top="75"/>
+
+            <!-- TITLE LINE -->
+
+            <Border Width="940"
+                    Height="3"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="70"
+                    Canvas.Top="155"/>
+
+
+            <!-- DRINK + BAR LIST (scrolls with touch & wide green slider) -->
+
+            <ScrollViewer x:Name="DrinksScrollViewer"
+                          Width="940"
+                          Height="1520"
+                          VerticalScrollBarVisibility="Visible"
+                          HorizontalScrollBarVisibility="Disabled"
+                          AllowAutoHide="False"
+                          Canvas.Left="70"
+                          Canvas.Top="180">
+
+                <StackPanel x:Name="DrinksPanel"
+                            Spacing="20"
+                            HorizontalAlignment="Center"/>
+
+            </ScrollViewer>
+
+
+            <!-- BACK BUTTON -->
+
+            <Button x:Name="BackButton"
+                    Classes="backButton"
+                    Width="940"
+                    Height="85"
+                    BorderThickness="2"
+                    CornerRadius="16"
+                    FontFamily="Cascadia Mono"
+                    FontSize="26"
+                    FontWeight="Bold"
+                    Content="BACK"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Canvas.Left="70"
+                    Canvas.Top="1740"/>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>

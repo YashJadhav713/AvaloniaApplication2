@@ -1,0 +1,547 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaloniaApplication2.Assets.Pages.DrinkPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME                                                         -->
+    <!--   BLACK      #0A0A0A  (page)   #121212 (panels)               -->
+    <!--   DARK GREEN #00A844  (highlights, values, liquid)            -->
+    <!--   ACCENT     #008A37  (labels, outlines)                      -->
+    <!--   WHITE      text only                                        -->
+    <!-- ============================================================= -->
+
+    <UserControl.Styles>
+
+        <!-- DARK PROCESS PANEL -->
+        <Style Selector="Border.processPanel">
+            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="BorderBrush" Value="#005C25"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="16"/>
+        </Style>
+
+        <!-- STAGE TEXT -->
+        <Style Selector="TextBlock.stageText">
+            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontSize" Value="19"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <!-- ============================================================= -->
+    <!-- PORTRAIT DESIGN AREA (1080 x 1920)                             -->
+    <!-- ============================================================= -->
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas Width="1080" Height="1920">
+
+            <!-- BACKGROUND -->
+            <Rectangle Width="1080"
+                       Height="1920"
+                       Fill="#0A0A0A"/>
+
+            <!-- HEADER -->
+            <TextBlock Text="NUTRI"
+                       FontFamily="Cascadia Mono"
+                       FontSize="54"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="White"
+                       Canvas.Left="40"
+                       Canvas.Top="65"/>
+
+            <TextBlock Text="POD"
+                       FontFamily="Cascadia Mono"
+                       FontSize="54"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#00A844"
+                       Canvas.Left="242"
+                       Canvas.Top="65"/>
+
+            <TextBlock Text="DRINK PREPARATION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="44"
+                       Canvas.Top="138"/>
+
+            <!-- COMPLETION -->
+            <TextBlock Text="COMPLETION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="840"
+                       Canvas.Top="78"/>
+
+            <TextBlock x:Name="CompletionText"
+                       Text="0%"
+                       FontFamily="Cascadia Mono"
+                       FontSize="46"
+                       FontWeight="Bold"
+                       Foreground="#00A844"
+                       Canvas.Left="840"
+                       Canvas.Top="105"/>
+
+            <!-- HEADER LINE (dark green accent) -->
+            <Border Width="1000"
+                    Height="3"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="40"
+                    Canvas.Top="190"/>
+
+            <!-- ORDER PANEL -->
+            <Border Classes="processPanel"
+                    Width="1000"
+                    Height="130"
+                    Canvas.Left="40"
+                    Canvas.Top="225">
+
+                <Canvas>
+
+                    <TextBlock Text="ORDER ID"
+                               FontFamily="Cascadia Mono"
+                               FontSize="15"
+                               FontWeight="Bold"
+                               LetterSpacing="3"
+                               Foreground="#008A37"
+                               Canvas.Left="28"
+                               Canvas.Top="22"/>
+
+                    <TextBlock x:Name="OrderIdText"
+                               Text=""
+                               FontFamily="Cascadia Mono"
+                               FontSize="25"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               Canvas.Left="28"
+                               Canvas.Top="53"/>
+
+                    <TextBlock Text="DRINK"
+                               FontFamily="Cascadia Mono"
+                               FontSize="15"
+                               FontWeight="Bold"
+                               LetterSpacing="3"
+                               Foreground="#008A37"
+                               Canvas.Left="380"
+                               Canvas.Top="22"/>
+
+                    <TextBlock x:Name="DrinkNameText"
+                               Text="Drink"
+                               FontFamily="Cascadia Mono"
+                               FontSize="25"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               Canvas.Left="380"
+                               Canvas.Top="53"/>
+
+                    <TextBlock Text="BASE"
+                               FontFamily="Cascadia Mono"
+                               FontSize="15"
+                               FontWeight="Bold"
+                               LetterSpacing="3"
+                               Foreground="#008A37"
+                               Canvas.Left="800"
+                               Canvas.Top="22"/>
+
+                    <TextBlock x:Name="BaseText"
+                               Text="WATER"
+                               FontFamily="Cascadia Mono"
+                               FontSize="25"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               Canvas.Left="800"
+                               Canvas.Top="53"/>
+
+                </Canvas>
+
+            </Border>
+
+            <!-- BUILDING TEXT -->
+            <TextBlock Text="BUILDING YOUR"
+                       FontFamily="Cascadia Mono"
+                       FontSize="17"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="40"
+                       Canvas.Top="385"/>
+
+            <TextBlock x:Name="BuildingText"
+                       Text="Building your Drink"
+                       FontFamily="Segoe UI"
+                       FontSize="40"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       Canvas.Left="40"
+                       Canvas.Top="415"/>
+
+            <!-- MAIN ANIMATION PANEL -->
+            <Border Classes="processPanel"
+                    Width="1000"
+                    Height="830"
+                    Canvas.Left="40"
+                    Canvas.Top="480">
+
+                <Canvas>
+
+                    <!-- SECTION TITLE -->
+                    <TextBlock Text="MIXING"
+                               FontFamily="Cascadia Mono"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               LetterSpacing="4"
+                               Foreground="#00A844"
+                               Canvas.Left="35"
+                               Canvas.Top="32"/>
+
+                    <TextBlock Text="LIVE PREPARATION"
+                               FontFamily="Cascadia Mono"
+                               FontSize="14"
+                               LetterSpacing="2"
+                               Foreground="#99FFFFFF"
+                               Canvas.Left="35"
+                               Canvas.Top="65"/>
+
+                    <!-- STAGE 01 -->
+                    <Border x:Name="StageLine1"
+                            Width="120"
+                            Height="3"
+                            Background="#707070"
+                            Canvas.Left="35"
+                            Canvas.Top="120"/>
+
+                    <TextBlock x:Name="StageText1"
+                               Classes="stageText"
+                               Text="01  CHILL"
+                               Foreground="#707070"
+                               Canvas.Left="35"
+                               Canvas.Top="135"/>
+
+                    <!-- STAGE 02 -->
+                    <Border x:Name="StageLine2"
+                            Width="120"
+                            Height="3"
+                            Background="#707070"
+                            Canvas.Left="35"
+                            Canvas.Top="200"/>
+
+                    <TextBlock x:Name="StageText2"
+                               Classes="stageText"
+                               Text="02  CUP"
+                               Foreground="#707070"
+                               Canvas.Left="35"
+                               Canvas.Top="215"/>
+
+                    <!-- STAGE 03 -->
+                    <Border x:Name="StageLine3"
+                            Width="120"
+                            Height="3"
+                            Background="#707070"
+                            Canvas.Left="35"
+                            Canvas.Top="280"/>
+
+                    <TextBlock x:Name="StageText3"
+                               Classes="stageText"
+                               Text="03  BASE"
+                               Foreground="#707070"
+                               Canvas.Left="35"
+                               Canvas.Top="295"/>
+
+                    <!-- STAGE 04 -->
+                    <Border x:Name="StageLine4"
+                            Width="120"
+                            Height="3"
+                            Background="#707070"
+                            Canvas.Left="35"
+                            Canvas.Top="360"/>
+
+                    <TextBlock x:Name="StageText4"
+                               Classes="stageText"
+                               Text="04  PROTEIN"
+                               Foreground="#707070"
+                               Canvas.Left="35"
+                               Canvas.Top="375"/>
+
+                    <!-- STAGE 05 -->
+                    <Border x:Name="StageLine5"
+                            Width="120"
+                            Height="3"
+                            Background="#707070"
+                            Canvas.Left="35"
+                            Canvas.Top="440"/>
+
+                    <TextBlock x:Name="StageText5"
+                               Classes="stageText"
+                               Text="05  FLAVOUR"
+                               Foreground="#707070"
+                               Canvas.Left="35"
+                               Canvas.Top="455"/>
+
+                    <!-- STAGE 06 -->
+                    <Border x:Name="StageLine6"
+                            Width="120"
+                            Height="3"
+                            Background="#707070"
+                            Canvas.Left="820"
+                            Canvas.Top="120"/>
+
+                    <TextBlock x:Name="StageText6"
+                               Classes="stageText"
+                               Text="06  BLEND"
+                               Foreground="#707070"
+                               Canvas.Left="820"
+                               Canvas.Top="135"/>
+
+                    <!-- STAGE 07 -->
+                    <Border x:Name="StageLine7"
+                            Width="120"
+                            Height="3"
+                            Background="#707070"
+                            Canvas.Left="820"
+                            Canvas.Top="200"/>
+
+                    <TextBlock x:Name="StageText7"
+                               Classes="stageText"
+                               Text="07  DISPENSE"
+                               Foreground="#707070"
+                               Canvas.Left="820"
+                               Canvas.Top="215"/>
+
+                    <!-- CURRENT STAGE -->
+                    <TextBlock Text="CURRENT STAGE"
+                               FontFamily="Cascadia Mono"
+                               FontSize="13"
+                               FontWeight="Bold"
+                               LetterSpacing="2"
+                               Foreground="#99FFFFFF"
+                               Canvas.Left="820"
+                               Canvas.Top="30"/>
+
+                    <TextBlock x:Name="CurrentStageText"
+                               Text="WAITING"
+                               FontFamily="Cascadia Mono"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="#00A844"
+                               Canvas.Left="820"
+                               Canvas.Top="55"/>
+
+                    <!-- STATUS -->
+                    <TextBlock x:Name="StatusText"
+                               Text="Preparing..."
+                               FontFamily="Segoe UI"
+                               FontSize="18"
+                               Foreground="#CCFFFFFF"
+                               Width="160"
+                               TextWrapping="Wrap"
+                               Canvas.Left="820"
+                               Canvas.Top="280"/>
+
+                    <!-- LIQUID LEVEL -->
+                    <TextBlock Text="LIQUID LEVEL"
+                               FontFamily="Cascadia Mono"
+                               FontSize="13"
+                               FontWeight="Bold"
+                               LetterSpacing="2"
+                               Foreground="#99FFFFFF"
+                               Canvas.Left="820"
+                               Canvas.Top="380"/>
+
+                    <TextBlock x:Name="LiquidLevelText"
+                               Text="0%"
+                               FontFamily="Cascadia Mono"
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Foreground="#00A844"
+                               Canvas.Left="820"
+                               Canvas.Top="405"/>
+
+                    <!-- GLASS GLOW (soft green shadow) -->
+                    <Ellipse Width="310"
+                             Height="35"
+                             Fill="#3300A844"
+                             Canvas.Left="345"
+                             Canvas.Top="705"/>
+
+                    <!-- GLASS BODY -->
+                    <Border Width="250"
+                            Height="480"
+                            Background="#0A0A0A"
+                            BorderBrush="#008A37"
+                            BorderThickness="4"
+                            CornerRadius="18"
+                            Canvas.Left="375"
+                            Canvas.Top="150"/>
+
+                    <!-- INNER GLASS -->
+                    <Border Width="230"
+                            Height="460"
+                            Background="#181818"
+                            BorderBrush="#005C25"
+                            BorderThickness="2"
+                            CornerRadius="14"
+                            Canvas.Left="385"
+                            Canvas.Top="160"/>
+
+                    <!-- LIQUID -->
+                    <Border x:Name="CupLiquid"
+                            Width="226"
+                            Height="0"
+                            Background="#00A844"
+                            Opacity="0.9"
+                            CornerRadius="0,0,12,12"
+                            Canvas.Left="387"
+                            Canvas.Top="618"/>
+
+                    <!-- LIQUID HIGHLIGHT -->
+                    <Border x:Name="LiquidHighlight"
+                            Width="5"
+                            Height="0"
+                            Background="#FFFFFF"
+                            Opacity="0.60"
+                            CornerRadius="3"
+                            Canvas.Left="402"
+                            Canvas.Top="618"/>
+
+                    <!-- GLASS TOP RIM -->
+                    <Border Width="285"
+                            Height="18"
+                            Background="#008A37"
+                            CornerRadius="8"
+                            Canvas.Left="357"
+                            Canvas.Top="132"/>
+
+                    <!-- GLASS LID -->
+                    <Border Width="235"
+                            Height="42"
+                            Background="#0A0A0A"
+                            BorderBrush="#008A37"
+                            BorderThickness="3"
+                            CornerRadius="9"
+                            Canvas.Left="382"
+                            Canvas.Top="82"/>
+
+                    <!-- GLASS LID CENTER -->
+                    <Ellipse Width="55"
+                             Height="18"
+                             Fill="#00A844"
+                             Canvas.Left="472"
+                             Canvas.Top="93"/>
+
+                </Canvas>
+
+            </Border>
+
+            <!-- PROGRESS SECTION -->
+            <TextBlock Text="PREPARATION PROGRESS"
+                       FontFamily="Cascadia Mono"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="40"
+                       Canvas.Top="1340"/>
+
+            <TextBlock x:Name="SchemaProgress"
+                       Text="0%"
+                       FontFamily="Cascadia Mono"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="#00A844"
+                       Canvas.Left="980"
+                       Canvas.Top="1335"/>
+
+            <!-- PROGRESS BACKGROUND -->
+            <Border Width="1000"
+                    Height="14"
+                    Background="#262626"
+                    CornerRadius="7"
+                    Canvas.Left="40"
+                    Canvas.Top="1375"/>
+
+            <!-- PROGRESS FOREGROUND -->
+            <Border x:Name="ProgressBar"
+                    Width="0"
+                    Height="14"
+                    Background="#00A844"
+                    CornerRadius="7"
+                    Canvas.Left="40"
+                    Canvas.Top="1375"/>
+
+            <!-- ETA -->
+            <TextBlock x:Name="EtaText"
+                       Text="ETA  -  14S"
+                       FontFamily="Cascadia Mono"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="40"
+                       Canvas.Top="1410"/>
+
+            <TextBlock Text="DO NOT INTERRUPT"
+                       FontFamily="Cascadia Mono"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#008A37"
+                       Canvas.Left="820"
+                       Canvas.Top="1410"/>
+
+            <!-- COMPLETE PANEL -->
+            <Border x:Name="CompletePanel"
+                    Width="1000"
+                    Height="90"
+                    Background="#00A844"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="16"
+                    Canvas.Left="40"
+                    Canvas.Top="1460"
+                    IsVisible="False">
+
+                <Canvas>
+
+                    <TextBlock Text="OK"
+                               FontFamily="Cascadia Mono"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="#0A0A0A"
+                               Canvas.Left="35"
+                               Canvas.Top="28"/>
+
+                    <TextBlock Text="DRINK PREPARATION COMPLETE"
+                               FontFamily="Cascadia Mono"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               LetterSpacing="2"
+                               Foreground="#0A0A0A"
+                               Canvas.Left="95"
+                               Canvas.Top="30"/>
+
+                </Canvas>
+
+            </Border>
+
+            <!-- FOOTER -->
+            <TextBlock Text="SHAKE LAB  |  AUTOMATED DRINK SYSTEM"
+                       FontFamily="Cascadia Mono"
+                       FontSize="12"
+                       LetterSpacing="2"
+                       Foreground="#66FFFFFF"
+                       Canvas.Left="40"
+                       Canvas.Top="1765"/>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>

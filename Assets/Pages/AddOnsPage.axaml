@@ -1,0 +1,467 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaloniaApplication2.Assets.Pages.AddOnsPage">
+
+    <!-- ============================================================= -->
+    <!-- THEME: BLACK      #0A0A0A                                     -->
+    <!--        DARK GREEN #00A844                                     -->
+    <!--        ACCENT     #008A37                                     -->
+    <!--        (white is used for text only) NutriPod_5                        -->
+    <!-- ============================================================= -->
+
+    <UserControl.Styles>
+
+        <!-- BASE BUTTON (WATER / MILK) -->
+        <Style Selector="Button.baseButton">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border
+                        x:Name="BaseBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="16">
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <Style Selector="Button.baseButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)"/>
+        </Style>
+
+
+        <!-- NAVIGATION BUTTON -->
+        <Style Selector="Button.navigationButton">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border
+                        x:Name="NavBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="14">
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="RenderTransformOrigin" Value="50%,50%"/>
+        </Style>
+
+        <!-- PREVIOUS hover -->
+        <Style Selector="Button.navigationButton.previous:pointerover /template/ Border#NavBorder">
+            <Setter Property="Background" Value="#008A37"/>
+        </Style>
+
+        <!-- NEXT hover -->
+        <Style Selector="Button.navigationButton.next:pointerover /template/ Border#NavBorder">
+            <Setter Property="Background" Value="#00BD4C"/>
+        </Style>
+
+        <Style Selector="Button.navigationButton:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.96)"/>
+        </Style>
+
+    </UserControl.Styles>
+
+
+    <!-- ============================================================= -->
+    <!-- PORTRAIT DESIGN AREA (1080 x 1920)                             -->
+    <!-- ============================================================= -->
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas Width="1080"
+                Height="1920"
+                Background="#0A0A0A">
+
+            <!-- BACKGROUND AMBIENT -->
+            <Image Source="/Assets/Image/AddOnsPage.png"
+                   Width="1080"
+                   Height="1920"
+                   Stretch="Fill"
+                   Opacity="0.15"
+                   Canvas.Left="0"
+                   Canvas.Top="0"/>
+
+            <!-- HEADER -->
+            <TextBlock FontFamily="Cascadia Mono"
+                       FontSize="48"
+                       FontWeight="Black"
+                       LetterSpacing="3"
+                       Canvas.Left="50"
+                       Canvas.Top="80">
+                <Run Text="NUTRI" Foreground="White"/><Run Text="POD" Foreground="#00A844"/>
+            </TextBlock>
+
+            <TextBlock Text="CUSTOMIZE YOUR SELECTION"
+                       FontFamily="Cascadia Mono"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       LetterSpacing="3"
+                       Foreground="#99FFFFFF"
+                       Canvas.Left="54"
+                       Canvas.Top="150"/>
+
+            <Border Width="980"
+                    Height="3"
+                    Background="#00A844"
+                    CornerRadius="2"
+                    Canvas.Left="50"
+                    Canvas.Top="195"/>
+
+            <!-- ===================================================== -->
+            <!-- DRINK INFO & BASE SELECTION                           -->
+            <!-- ===================================================== -->
+
+            <!-- DRINK NAME (DARK GREEN) -->
+            <TextBlock x:Name="DrinkNameText"
+                       Width="980"
+                       Height="70"
+                       Canvas.Left="50"
+                       Canvas.Top="240"
+                       Text="Drink 1"
+                       FontSize="44"
+                       FontWeight="Black"
+                       Foreground="#00A844"
+                       TextAlignment="Center"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+            <!-- DRINK IMAGE -->
+            <Border Width="400"
+                    Height="400"
+                    Canvas.Left="340"
+                    Canvas.Top="320"
+                    CornerRadius="22"
+                    Background="#CC0A0A0A"
+                    BorderBrush="#008A37"
+                    BorderThickness="2">
+
+                <Image x:Name="DrinkImage"
+                       Width="380"
+                       Height="380"
+                       Stretch="Uniform"/>
+
+            </Border>
+
+            <!-- ===================================================== -->
+            <!-- NUTRITION SECTION                                     -->
+            <!-- ===================================================== -->
+
+            <!-- NUTRITION TITLE -->
+            <Border Width="300"
+                    Height="50"
+                    Canvas.Left="390"
+                    Canvas.Top="750"
+                    Background="#0A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="25">
+
+                <TextBlock Text="NUTRITION"
+                           FontSize="24"
+                           FontWeight="Black"
+                           LetterSpacing="3"
+                           Foreground="#00A844"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+            </Border>
+
+            <!-- NUTRITION PANEL -->
+            <Border Width="980"
+                    Height="300"
+                    Canvas.Left="50"
+                    Canvas.Top="815"
+                    Background="#E60A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="3"
+                    CornerRadius="20">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- PROTEIN -->
+                    <StackPanel Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+
+                        <TextBlock Text="PROTEIN"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Foreground="#008A37"
+                                   TextAlignment="Center"/>
+
+                        <TextBlock x:Name="ProteinValue"
+                                   Text="0 g"
+                                   FontSize="32"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   TextAlignment="Center"/>
+
+                    </StackPanel>
+
+                    <!-- CALORIES -->
+                    <StackPanel Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+
+                        <TextBlock Text="CALORIES"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Foreground="#008A37"
+                                   TextAlignment="Center"/>
+
+                        <TextBlock x:Name="CaloriesValue"
+                                   Text="0 kcal"
+                                   FontSize="32"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   TextAlignment="Center"/>
+
+                    </StackPanel>
+
+                    <!-- BCAA -->
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+
+                        <TextBlock Text="BCAA"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Foreground="#008A37"
+                                   TextAlignment="Center"/>
+
+                        <TextBlock x:Name="BcaaValue"
+                                   Text="0 g"
+                                   FontSize="32"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   TextAlignment="Center"/>
+
+                    </StackPanel>
+
+                    <!-- TOTAL SUGARS -->
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+
+                        <TextBlock Text="TOTAL SUGARS"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Foreground="#008A37"
+                                   TextAlignment="Center"/>
+
+                        <TextBlock x:Name="SugarValue"
+                                   Text="0 g"
+                                   FontSize="32"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   TextAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Border>
+
+            <!-- SERVING -->
+            <TextBlock x:Name="ServingValue"
+                       Width="980"
+                       Height="40"
+                       Canvas.Left="50"
+                       Canvas.Top="1135"
+                       Text=""
+                       FontSize="24"
+                       Foreground="#DDFFFFFF"
+                       TextAlignment="Center"/>
+
+            <!-- BASE TITLE (hidden for Protain Bars) -->
+            <Border x:Name="BaseTitleBox"
+                    Width="700"
+                    Height="50"
+                    Canvas.Left="190"
+                    Canvas.Top="1195"
+                    Background="#0A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="2"
+                    CornerRadius="25">
+
+                <TextBlock Text="CHOOSE YOUR BASE"
+                           FontSize="24"
+                           FontWeight="Black"
+                           LetterSpacing="2"
+                           Foreground="#00A844"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+            </Border>
+
+            <!-- WATER (hidden for Protain Bars) -->
+            <Button x:Name="WaterButton"
+                    Classes="baseButton"
+                    Width="465"
+                    Height="120"
+                    Canvas.Left="60"
+                    Canvas.Top="1265"
+                    Background="#00A844"
+                    BorderBrush="#00A844"
+                    BorderThickness="4">
+
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+
+                    <TextBlock x:Name="WaterTitleText"
+                               Text="WATER"
+                               FontSize="32"
+                               FontWeight="Black"
+                               Foreground="#0A0A0A"
+                               TextAlignment="Center"/>
+
+                    <TextBlock x:Name="WaterSubText"
+                               Text="CHILLED WATER"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="#0A0A0A"
+                               TextAlignment="Center"
+                               Margin="0,4,0,0"/>
+
+                </StackPanel>
+
+            </Button>
+
+            <!-- MILK (hidden when MilkEnabled = false or for Protain Bars) -->
+            <Button x:Name="MilkButton"
+                    Classes="baseButton"
+                    Width="465"
+                    Height="120"
+                    Canvas.Left="555"
+                    Canvas.Top="1265"
+                    Background="#0A0A0A"
+                    BorderBrush="#008A37"
+                    BorderThickness="4">
+
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+
+                    <TextBlock x:Name="MilkTitleText"
+                               Text="MILK"
+                               FontSize="32"
+                               FontWeight="Black"
+                               Foreground="White"
+                               TextAlignment="Center"/>
+
+                    <TextBlock x:Name="MilkPriceText"
+                               Text="+ 10/-"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Foreground="#008A37"
+                               TextAlignment="Center"
+                               Margin="0,4,0,0"/>
+
+                </StackPanel>
+
+            </Button>
+
+            <!-- TOTAL PRICE BOX -->
+            <Border x:Name="TotalPriceBox"
+                    Width="980"
+                    Height="110"
+                    Canvas.Left="50"
+                    Canvas.Top="1465"
+                    Background="#E60A0A0A"
+                    BorderBrush="#00A844"
+                    BorderThickness="3"
+                    CornerRadius="18">
+
+                <TextBlock x:Name="PriceText"
+                           Text="Total : Rs. 300"
+                           FontSize="40"
+                           FontWeight="Black"
+                           Foreground="#00A844"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+            </Border>
+
+            <!-- ===================================================== -->
+            <!-- NAVIGATION BUTTONS                                     -->
+            <!-- ===================================================== -->
+
+            <!-- PREVIOUS -->
+            <Button x:Name="BackButton"
+                    Classes="navigationButton previous"
+                    Width="260"
+                    Height="85"
+                    Background="#0A0A0A"
+                    BorderBrush="#008A37"
+                    BorderThickness="3"
+                    Canvas.Left="60"
+                    Canvas.Top="1630">
+
+                <TextBlock Text="‹  PREVIOUS"
+                           FontSize="22"
+                           FontWeight="Black"
+                           LetterSpacing="1"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+            </Button>
+
+            <!-- NEXT -->
+            <Button x:Name="ContinueButton"
+                    Classes="navigationButton next"
+                    Width="260"
+                    Height="85"
+                    Background="#00A844"
+                    BorderBrush="#00A844"
+                    BorderThickness="3"
+                    Canvas.Left="760"
+                    Canvas.Top="1630">
+
+                <TextBlock Text="NEXT  ›"
+                           FontSize="22"
+                           FontWeight="Black"
+                           LetterSpacing="1"
+                           Foreground="#0A0A0A"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+            </Button>
+
+        </Canvas>
+
+    </Viewbox>
+
+</UserControl>
